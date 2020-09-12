@@ -112,7 +112,7 @@ HIDECURSOR(){ echo -en "\033[?25l";}
 HIDECURSOR
 echo -e ""
 #DRAW
-#figlet -f ASCII-Shadow "  h4Ck3R" | lolcat -t
+#figlet -f ASCII-Shadow " PROC" | lolcat -t
 PUT 2 0
 echo -e "\033[33m -================= ≫ ──── ≪•◦ ❈ ◦•≫ ──── ≪=================-" | lolcat
 echo -e "\033[33m │                                                          │"
