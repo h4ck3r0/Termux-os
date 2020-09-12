@@ -44,6 +44,7 @@ banner ( ) {
                                                          rm -rf ~/.termux/colors.properties
                                                          rm -rf /data/data/com.termux/files/usr/etc/motd
                                                          cd ~/Termux-os/.object ; cp -r .colors.properties ~/.termux/colors.properties
+                                                         cd ~/Termux-os/.object ; cp -r .termux.properties ~/.termux/termux.properties
                                                          clear
                                                          cd ~/Termux-os ; bash os.sh
                                                          
