@@ -127,7 +127,7 @@ echo -e "\033[33m │                                                          �
 echo -e "\033[33m ----------•┈┈┈••✦ :    『|』『+』『|』    : ✦••┈┈┈•---------"  | lolcat
 #DRAW
 PUT 4 0
-figlet -f ASCII-Shadow "\ \ h4Ck3R" | lolcat -t
+figlet -f ASCII-Shadow "PROC" | lolcat -t
 PUT 4 0
 echo -e "\033[33m │"
 PUT 5 0
