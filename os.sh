@@ -77,7 +77,7 @@ banner ( ) {
                                                                                                                                                                                                                      }
                                                                                                                                                                                                                      8line() {
                                                                                                                                                                                                                                   rm -rf ~/Termux-os
-                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                  git clone https://github.com/h4ck3r0/Termux-os
                                                                                                                                                                                                                                   }
     
                                  selection () {
