@@ -80,8 +80,9 @@ banner ( ) {
                                                                                                                                                                                                                      }
                                                                                                                                                                                                                      8line() {
                                                                                                                                                                                                                                   rm -rf ~/Termux-os
+                                                                                                                                                                                                                                  cd
                                                                                                                                                                                                                                   git clone https://github.com/h4ck3r0/Termux-os
-                                                                                                                                                                                                                                 cd ~/Termux-os ; bash os.sh
+                                                                                                                                                                                                                                  cd ~/Termux-os ; bash os.sh
                                                                                                                                                                                                                                   }
     
                                  selection () {
