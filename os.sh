@@ -38,6 +38,7 @@ banner ( ) {
                                                          wget -O $PREFIX/share/figlet/ASCII-Shadow.flf https://raw.githubusercontent.com/xero/figlet-fonts/master/ANSI%20Shadow.flf
                                                          apt install toilet figlet exa wget ruby -y
                                                          rm -rf ~/.termux/colors.properties
+                                                         rm -rf /data/data/com.termux/files/usr/etc/motd
                                                          cd ~/Termux-os/.object ; cp -r .colors.properties ~/.termux/colors.properties
                                                          clear
                                                          cd ~/Termux-os ; bash os.sh
@@ -78,6 +79,7 @@ banner ( ) {
                                                                                                                                                                                                                      8line() {
                                                                                                                                                                                                                                   rm -rf ~/Termux-os
                                                                                                                                                                                                                                   git clone https://github.com/h4ck3r0/Termux-os
+#                                                                                                                                                                                                                                   cd ~/Termux-os ; bash os.sh
                                                                                                                                                                                                                                   }
     
                                  selection () {
