@@ -18,7 +18,7 @@ echo -e " \e[1;91m Telegram\e[1;96m /\e[1;92m H4Ck3R_0                          
 echo ""
 
 banner ( ) {
-                  random
+                  
                   
                   printf ""
                   echo -e "\e[1;31m  [\e[32m√\e[31m] \e[1;91m by \e[1;36mRaj Aryan \e[93m/ \e[100;92myoutube.com/h4ck3r_raj\e[0m"
