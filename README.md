@@ -12,8 +12,11 @@ Added Termux Extra Keys
   <img src="IMG_20200916_172012.jpg" width="300" hight="220">
 </p>
 
-
 Added Banner 
+
+<p align="center">
+  <img src="IMG_20200916_173634.jpg" width="300" hight="220">
+</p>
 
 Added Own made Advance zsh theme
 <p align="center">
