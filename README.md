@@ -32,3 +32,18 @@ Added Highlight / Autosuggestion
 # Photos Of Theme
 
 
+
+
+<p align="center">
+  <img src="Screenshot_2020-09-16-17-12-36-564_com.termux.jpg" width="300" hight="220">
+</p>
+
+# Installation
+
+
+
+git clone https://github.com/h4ck3r0/Termux-os
+
+cd Termux-os
+
+bash os.sh
