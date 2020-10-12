@@ -35,8 +35,9 @@ banner ( ) {
                                                          pkg install ruby
                                                          pkg install wget
                                                          gem install lolcat
-                                                         dpkg --configure -a
+                                                         pkg install curl
                                                          pkg install zsh
+                                                         dpkg --configure -a
                                                          clear
                                                          wget -O $PREFIX/share/figlet/ASCII-Shadow.flf https://raw.githubusercontent.com/xero/figlet-fonts/master/ANSI%20Shadow.flf
                                                          git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
