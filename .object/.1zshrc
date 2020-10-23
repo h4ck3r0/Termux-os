@@ -1,7 +1,7 @@
 
 #echo ""
 ZSH_THEME="h4Ck3r"
-
+export ZSH=$HOME/.oh-my-zsh
 
 #figlet -f ASCII-Shadow "  h4ck3r" | lolcat -t
 
