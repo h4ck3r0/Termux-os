@@ -1,7 +1,7 @@
 
 #echo ""
 ZSH_THEME="h4Ck3r"
- startup.
+
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
