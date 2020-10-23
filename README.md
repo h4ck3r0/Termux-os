@@ -4,6 +4,8 @@ Based on Zsh Shell
 
 Pure Termux Look
 
+Credits to Oh My Zsh
+
 # Features
 
 Added Termux Extra Keys
