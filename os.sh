@@ -21,7 +21,7 @@ banner ( ) {
                   
                   
                   printf ""
-                  echo -e "\e[1;31m  [\e[32m√\e[31m] \e[1;91m by \e[1;36mRaj Aryan \e[93m/ \e[100;92myoutube.com/h4ck3r_raj\e[0m"
+                  echo -e "\e[1;31m  [\e[32m√\e[31m] \e[1;91m by \e[1;36mRaj Aryan \e[93m/ \e[100;92myoutube.com/h4ck3r0\e[0m"
                   }
 
                   wr  ( )  {
@@ -70,7 +70,7 @@ banner ( ) {
                                                                                                                                               cd ~/Termux-os/.object
                                                                                                                                               bash  .2.sh
                                                                                                                                               clear ; cd ~/Termux-os ; bash os.sh
-                                                                                                                                                 }
+                                                                                                                                                 
                                                                                                                                                 6line() {
                                                                                                                                                                          cd ~/Termux-os/.object
                                                                                                                                                                          bash .1.sh
