@@ -34,18 +34,18 @@ Added Termux Extra Keys
 Added Banner 
 
 <p align="center">
-  <img src="img/2.jpg" width="300" hight="220">
+  <img src="img/4.jpg" width="300" hight="220">
 </p>
 
 Added Own made Advance zsh theme
 <p align="center">
-  <img src="img/3.jpg" width="300" hight="220">
+  <img src="img/2.jpg" width="300" hight="220">
 </p>
 
 Added Highlight / Autosuggestion
 
 <p align="center">
-  <img src="img/4.jpg" width="300" hight="220">
+  <img src="img/3.jpg" width="300" hight="220">
 </p>
 
 # Photos Of Theme
