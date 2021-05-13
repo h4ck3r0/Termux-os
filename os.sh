@@ -32,9 +32,9 @@ banner ( ) {
                                                          apt update && apt upgrade
                                                          pkg install zsh -y
                                                          pkg install git -y
-                                                         pkg install ruby -y
-                                                         pkg install wget -y
-                                                         gem install lolcat -y
+                                                         pkg install ruby  -y
+                                                         pkg install wget  -y
+                                                         gem install lolcat 
                                                          pkg install curl -y
                                                          pkg install zsh -y
                                                          dpkg --configure -a
