@@ -70,6 +70,7 @@ banner ( ) {
                                                                                                                                               cd ~/Termux-os/.object
                                                                                                                                               bash  .2.sh
                                                                                                                                               clear ; cd ~/Termux-os ; bash os.sh
+                                                                                                                                                  }
                                                                                                                                                  
                                                                                                                                                 6line() {
                                                                                                                                                                          cd ~/Termux-os/.object
