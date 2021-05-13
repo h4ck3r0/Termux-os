@@ -34,18 +34,18 @@ Added Termux Extra Keys
 Added Banner 
 
 <p align="center">
-  <img src="IMG_20200916_173634.jpg" width="300" hight="220">
+  <img src="img/2.jpg" width="300" hight="220">
 </p>
 
 Added Own made Advance zsh theme
 <p align="center">
-  <img src="IMG_20200916_172027.jpg" width="300" hight="220">
+  <img src="img/3.jpg" width="300" hight="220">
 </p>
 
 Added Highlight / Autosuggestion
 
 <p align="center">
-  <img src="IMG_20200916_173046.jpg" width="300" hight="220">
+  <img src="img/4.jpg" width="300" hight="220">
 </p>
 
 # Photos Of Theme
@@ -54,7 +54,7 @@ Added Highlight / Autosuggestion
 
 
 <p align="center">
-  <img src="Screenshot_2020-09-16-17-12-36-564_com.termux.jpg" width="300" hight="220">
+  <img src="img/5.jpg" width="300" hight="220">
 </p>
 
 # Installation
