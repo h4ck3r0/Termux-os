@@ -12,7 +12,7 @@ echo -e " \e[91m                                                   ____      ___
 echo -e " \e[91m                                                  / __ \    / ____\ " 
 echo -e " \e[96m                                                 / /  \ \  ( (___   " 
 echo -e " \e[96m                                                ( ()  () )  \___ \  " 
-echo -e " \e[1;91m Youtube\e[96m / \e[100;97myoutube.com/h4ck3r0\e[0;31m               ( ()  () )      ) )" 
+echo -e " \e[1;91m Youtube\e[96m / \e[100;97myoutube.com/h4ck3r0\e[0;31m                  ( ()  () )      ) )" 
 echo -e " \e[1;91m Github\e[96m /\e[1;93m H4Ck3R0                                \ \__/ /   ___/ /"  
 echo -e " \e[1;91m Telegram\e[1;96m /\e[1;92m H4Ck3R_0                              \____/   /____/"    
 echo ""
@@ -30,13 +30,13 @@ banner ( ) {
                                }
                                1line() {
                                                          apt update && apt upgrade
-                                                         pkg install zsh
-                                                         pkg install git
-                                                         pkg install ruby
-                                                         pkg install wget
-                                                         gem install lolcat
-                                                         pkg install curl
-                                                         pkg install zsh
+                                                         pkg install zsh -y
+                                                         pkg install git -y
+                                                         pkg install ruby -y
+                                                         pkg install wget -y
+                                                         gem install lolcat -y
+                                                         pkg install curl -y
+                                                         pkg install zsh -y
                                                          dpkg --configure -a
                                                          clear
                                                          wget -O $PREFIX/share/figlet/ASCII-Shadow.flf https://raw.githubusercontent.com/xero/figlet-fonts/master/ANSI%20Shadow.flf
