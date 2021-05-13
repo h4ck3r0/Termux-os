@@ -28,7 +28,7 @@ Credits to Oh My Zsh
 Added Termux Extra Keys
 
 <p align="center">
-  <img src="IMG_20200916_172012.jpg" width="300" hight="220">
+  <img src="img/1.jpg" width="300" hight="220">
 </p>
 
 Added Banner 
