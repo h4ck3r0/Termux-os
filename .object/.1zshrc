@@ -27,7 +27,7 @@ echo -e "\033[33m │                                                          �
 echo -e "\033[33m │                                                          │"
 echo -e "\033[33m │                                                          │"
 echo -e "\033[33m │                                                          │"
-echo -e "\033[33m ----------•┈┈┈••✦ :    『|』『+』『|』    : ✦••┈┈┈•---------"  | lolcat
+echo -e "\033[33m ╰─━━━━━━━━━━━━━━━━━━━━━━━━━H4Ck3R━V2.0━━━━━━━━━━━━━━━━━━━━─╯  |
 #DRAW
 PUT 4 0
 figlet -f ASCII-Shadow "\ PROC" | lolcat -t
