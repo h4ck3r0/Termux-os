@@ -30,7 +30,7 @@ echo -e "\033[33m │                                                          �
 echo -e "\033[33m ╰─━━━━━━━━━━━━━━━━━━━━━━━━Termux-os━━━━━━━━━━━━━━━━━━━━━━━─╯"  | lolcat
 #DRAW
 PUT 4 0
-figlet -f ASCII-Shadow "\ PROC" | lolcat -t
+figlet -f ASCII-Shadow "\H4ck3r" | lolcat -t
 PUT 4 0
 echo -e "\033[33m │"
 PUT 5 0
