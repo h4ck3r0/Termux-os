@@ -2,7 +2,7 @@
 #echo ""
 ZSH_THEME="h4Ck3r"
 plugins=(git)
-source $HOME/.oh*/oh-my-zsh.sh
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 export ZSH=$HOME/.oh-my-zsh
 
