@@ -17,11 +17,11 @@
 
 # Termux-os
 
-Based on Zsh Shell
+* [+] Based on Zsh Shell !
 
-Pure Termux Look
+* [+] Pure Termux Look !
 
-Credits to Oh My Zsh
+* [+] Credits to Oh My Zsh !
 
 # Features
 
