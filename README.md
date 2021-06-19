@@ -25,24 +25,24 @@ Credits to Oh My Zsh
 
 # Features
 
-Added Termux Extra Keys
+`Added Termux Extra Keys`
 
 <p align="center">
   <img src="img/1.jpg" width="300" hight="220">
 </p>
 
-Added Banner 
+`Added Banner`
 
 <p align="center">
   <img src="img/4.jpg" width="300" hight="220">
 </p>
 
-Added Own made Advance zsh theme
+`Added Own made Advance zsh theme`
 <p align="center">
   <img src="img/2.jpg" width="300" hight="220">
 </p>
 
-Added Highlight / Autosuggestion
+`Added Highlight / Autosuggestion`
 
 <p align="center">
   <img src="img/3.jpg" width="300" hight="220">
@@ -61,8 +61,17 @@ Added Highlight / Autosuggestion
 
 
 
-git clone https://github.com/h4ck3r0/Termux-os
+`git clone https://github.com/h4ck3r0/Termux-os`
 
-cd Termux-os
+`cd Termux-os`
 
-bash os.sh
+`bash os.sh`
+
+
+## CONNECT WITH US :
+
+<a href="https://github.com/h4ck3r0"><img title="Github" src="https://img.shields.io/badge/H4Ck3R-Raj-brightgreen?style=for-the-badge&logo=github"></a>
+[![Instagram](https://img.shields.io/badge/INSTAGRAM-FOLLOW-red?style=for-the-badge&logo=instagram)](https://rebrand.ly/loginx202266fb40)
+[![Instagram](https://img.shields.io/badge/WEBSITE-VISIT-yellow?style=for-the-badge&logo=blogger)](https://rebrand.ly/h4ck3r-5064aa)
+[![Instagram](https://img.shields.io/badge/TELEGRAM-CHANNEL-red?style=for-the-badge&logo=telegram)](https://rebrand.ly/termuxcoding3d8527)
+<a href="https://rebrand.ly/7elzgww"><img title="YouTube" src="https://img.shields.io/badge/YouTube-H4Ck3R-red?style=for-the-badge&logo=Youtube"></a>
