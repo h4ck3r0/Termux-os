@@ -13,7 +13,14 @@
 <a href="https://github.com/h4ck3r0"><img title="Github" src="https://img.shields.io/badge/H4CK3R-RAJ-brightgreen?style=for-the-badge&logo=github"></a>
 <a href="https://youtu.be/VDeLnDxVziw"><img title="YouTube" src="https://img.shields.io/badge/YouTube-H4CK3R-red?style=for-the-badge&logo=Youtube"></a>
 </p>
-
+<p align="center">
+<a href="https://github.com/h4ck3r0"><img title="Language" src="https://img.shields.io/badge/Made%20with-Bash-1f425f.svg?v=103"></a>
+<a href="https://github.com/h4ck3r0"><img title="Followers" src="https://img.shields.io/github/followers/h4ck3r0?color=blue&style=flat-square"></a>
+<a href="https://github.com/h4ck3r0"><img title="Stars" src="https://img.shields.io/github/stars/h4ck3r0/Termux-os?color=red&style=flat-square"></a>
+<a href="https://github.com/h4ck3r0"><img title="Forks" src="https://img.shields.io/github/forks/h4ck3r0/Termux-os?color=red&style=flat-square"></a>
+<a href="https://github.com/h4ck3r0"><img title="Watching" src="https://img.shields.io/github/watchers/h4ck3r0/Termux-os?label=Watchers&color=blue&style=flat-square"></a>
+<a href="https://github.com/h4ck3r0"><img title="Licence" src="https://img.shields.io/badge/License-GNU-blue.svg"></a>
+</p>
 
 # Termux-os
 
@@ -21,7 +28,6 @@
 
 * [+] Pure Termux Look !
 
-* [+] Credits to Oh My Zsh !
 
 # Features
 
@@ -67,6 +73,10 @@
 
 * `bash os.sh`
 
+## Credits
+
+* [+] Credits to Oh My Zsh !
+* [+] H4Ck3R ( Raj Aryan )
 
 ## CONNECT WITH US :
 
