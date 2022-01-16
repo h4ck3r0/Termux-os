@@ -37,15 +37,16 @@ banner ( ) {
                                                          gem install lolcat 
                                                          pkg install curl -y
                                                          pkg install zsh -y
-                                                         dpkg --configure -a
+                                                         
                                                          clear
                                                          wget -O $PREFIX/share/figlet/ASCII-Shadow.flf https://raw.githubusercontent.com/xero/figlet-fonts/master/ANSI%20Shadow.flf
                                                          git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-                                                         apt install toilet figlet exa wget ruby 
+                                                         pkg install toilet figlet exa -y
+                                                         
                                                          rm -rf ~/.termux/colors.properties
                                                          rm -rf /data/data/com.termux/files/usr/etc/motd
-                                                         cd ~/Termux-os/.object ; cp -r .colors.properties ~/.termux/colors.properties
-                                                         cd ~/Termux-os/.object ; cp -r .termux.properties ~/.termux/termux.properties
+                                                         cp -r .colors.properties ~/.termux/colors.properties
+                                                         cp -r .termux.properties ~/.termux/termux.properties
                                                          clear
                                                          cd ~/Termux-os ; bash os.sh
                                                          
