@@ -42,7 +42,7 @@ banner ( ) {
                                                          wget -O $PREFIX/share/figlet/ASCII-Shadow.flf https://raw.githubusercontent.com/xero/figlet-fonts/master/ANSI%20Shadow.flf
                                                          git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
                                                          pkg install toilet figlet exa -y
-                                                         
+                                                         cd ~/Termux-os/.object
                                                          rm -rf ~/.termux/colors.properties
                                                          rm -rf /data/data/com.termux/files/usr/etc/motd
                                                          cp -r .colors.properties ~/.termux/colors.properties
