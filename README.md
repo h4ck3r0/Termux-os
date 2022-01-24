@@ -51,7 +51,7 @@
 `Added Highlight / Autosuggestion`
 
 <p align="center">
-  <img src="img/3.jpg" width="300" hight="220">
+  <img src="https://user-images.githubusercontent.com/46929618/150729854-a09be75c-5e3a-4a21-85b4-71191ee42bd2.jpg" width="300" hight="220">
 </p>
 
 # Photos Of Theme
