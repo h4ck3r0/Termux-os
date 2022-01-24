@@ -45,7 +45,7 @@
 
 `Added Own made Advance zsh theme`
 <p align="center">
-  <img src="img/2.jpg" width="300" hight="220">
+  <img src="https://user-images.githubusercontent.com/46929618/150729435-7eea5d74-8474-427a-9ada-a8d50da91136.jpg" width="300" hight="220">
 </p>
 
 `Added Highlight / Autosuggestion`
