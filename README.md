@@ -60,7 +60,7 @@
 
 
 <p align="center">
-  <img src="img/5.jpg" width="300" hight="220">
+  <img src="https://user-images.githubusercontent.com/46929618/150729988-7c0c2a39-fe78-4dc6-8174-1a220e0ee1e5.jpg" width="300" hight="220">
 </p>
 
 # Installation
