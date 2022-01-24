@@ -40,7 +40,7 @@
 `Your Name Banner`
 
 <p align="center">
-  <img src="img/4.jpg" width="300" hight="220">
+  <img src="https://user-images.githubusercontent.com/46929618/150729923-9f0415aa-d0fd-46c7-86cb-1ef65affffcb.jpg" width="300" hight="220">
 </p>
 
 `Added Own made Advance zsh theme`
