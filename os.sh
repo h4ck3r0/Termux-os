@@ -32,7 +32,7 @@ banner ( ) {
                                                          apt update && apt upgrade
                                                          pkg install zsh -y
                                                          pkg install git -y
-                                                         pkg install figlet -y
+                                                         pkg install figlet toilet -y
                                                          pkg install ruby  -y
                                                          pkg install wget  -y
                                                          wget -O $PREFIX/share/figlet/ASCII-Shadow.flf https://raw.githubusercontent.com/xero/figlet-fonts/master/ANSI%20Shadow.flf
