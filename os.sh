@@ -84,6 +84,7 @@ banner ( ) {
                                                                                                                                                                        7line() {
                                                                                                                                                                                                                     cd ~/Termux-os/.object
                                                                                                                                                                                                                     rm -rf ~/.zshrc
+                                                                                                                                                                                                                    chsh -s zsh
                                                                                                                                                                                                                     bash .3.sh
                                                                                                                                                                                                                     clear ; cd ~/Termux-os ; bash os.sh
                                                                                                                                                                                                                      }
