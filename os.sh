@@ -35,7 +35,7 @@ banner ( ) {
                                                          pkg install figlet toilet -y
                                                          pkg install ruby  -y
                                                          pkg install wget  -y
-                                                         wget -O $PREFIX/share/figlet/ASCII-Shadow.flf https://raw.githubusercontent.com/xero/figlet-fonts/master/ANSI%20Shadow.flf
+                                                       
                                                          gem install lolcat 
                                                          pkg install curl -y
                                                          pkg install zsh -y
