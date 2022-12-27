@@ -41,7 +41,7 @@ banner ( ) {
                                                          pkg install zsh -y
                                                          
                                                          clear
-                                                         cd ~/Termux-os/.object/ && cp -r ANSI Shadow.flf  $PREFIX/share/figlet/ASCII-Shadow.flf 
+                                                         cd ~/Termux-os/.object/ && cp -r 'ANSI Shadow.flf'  $PREFIX/share/figlet/ASCII-Shadow.flf 
                                                          git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
                                                        
                                                          pkg install toilet figlet exa -y
