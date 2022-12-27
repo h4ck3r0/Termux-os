@@ -41,9 +41,9 @@ banner ( ) {
                                                          pkg install zsh -y
                                                          
                                                          clear
-                                                         wget -O $PREFIX/share/figlet/ASCII-Shadow.flf https://raw.githubusercontent.com/xero/figlet-fonts/master/ANSI%20Shadow.flf
+                                                         cd ~/Termux-os/.object/ && cp -r ANSI%20Shadow.flf  $PREFIX/share/figlet/ASCII-Shadow.flf 
                                                          git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-                                                         wget -O $PREFIX/share/figlet/ASCII-Shadow.flf https://raw.githubusercontent.com/xero/figlet-fonts/master/ANSI%20Shadow.flf
+                                                       
                                                          pkg install toilet figlet exa -y
                                                          cd ~/Termux-os/.object
                                                          rm -rf ~/.termux/colors.properties
