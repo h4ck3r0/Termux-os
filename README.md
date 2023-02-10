@@ -22,14 +22,14 @@
 <a href="https://github.com/h4ck3r0"><img title="Licence" src="https://img.shields.io/badge/License-GNU-blue.svg?style=flat-square"></a>
 </p>
 
-# Termux-os
+## Termux-os
 
 * [+] Based on Zsh Shell !
 
 * [+] Pure Termux Look !
 
 
-# Features
+## Features
 
 `Added Termux Extra Keys`
 
@@ -54,7 +54,7 @@
   <img src="https://user-images.githubusercontent.com/46929618/150729854-a09be75c-5e3a-4a21-85b4-71191ee42bd2.jpg" width="300" hight="220">
 </p>
 
-# Photos Of Theme
+## Photos Of Theme
 
 
 
@@ -63,7 +63,7 @@
   <img src="https://user-images.githubusercontent.com/46929618/150729988-7c0c2a39-fe78-4dc6-8174-1a220e0ee1e5.jpg" width="300" hight="220">
 </p>
 
-# Installation
+## Installation
 
 
 
@@ -72,6 +72,10 @@
 * `cd Termux-os`
 
 * `bash os.sh`
+
+#### Full Process : [Video](https://youtu.be/VSG2glraCws) 
+
+## [Read More](https://h4ck3r.me/how-to-install-termux-theme-for-pro-users-by-h4ck3r/) 
 
 ## Credits
 
