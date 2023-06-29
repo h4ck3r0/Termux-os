@@ -75,7 +75,7 @@
 
 #### Full Process : [Video](https://youtu.be/VSG2glraCws) 
 
-## [Read More]([https://h4ck3r.me/how-to-install-termux-theme-for-pro-users-by-h4ck3r/]) 
+## [Read More](https://h4ck3r.me/how-to-install-termux-theme-for-pro-users-by-h4ck3r/) 
 
 ## Credits
 
