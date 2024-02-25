@@ -75,7 +75,7 @@
 
 #### Full Process : [Video](https://youtu.be/VSG2glraCws) 
 
-## [Read More](https://www.google.com/search?q=how+to+install+termux+theme+site%3Ah4ck3r%2Eme) 
+## [Read More](https://www.h4ck3r.me/how-to-install-theme-in-termux-in-one-click/) 
 
 ## Credits
 
