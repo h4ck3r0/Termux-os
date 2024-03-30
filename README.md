@@ -90,3 +90,4 @@
 [![Instagram](https://img.shields.io/badge/WEBSITE-VISIT-yellow?style=for-the-badge&logo=blogger)](https://www.h4ck3r.me)
 [![Instagram](https://img.shields.io/badge/TELEGRAM-CHANNEL-red?style=for-the-badge&logo=telegram)](https://t.me/h4ck3r_group)
 <a href="https://rebrand.ly/7elzgww"><img title="YouTube" src="https://img.shields.io/badge/YouTube-H4Ck3R-red?style=for-the-badge&logo=Youtube"></a>
+https://www.h4ck3r.me/how-to-install-theme-in-termux-in-one-click/
