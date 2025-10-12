@@ -27,7 +27,7 @@ echo -e "\033[33m │                                                          �
 echo -e "\033[33m │                                                          │"
 echo -e "\033[33m │                                                          │"
 echo -e "\033[33m │                                                          │"
-echo -e "\033[33m ╰─━━━━━━━━━━━━━━━━━━━━━━━━Termux-os━━━━━━━━━━━━━━━━━━━━━━━─╯"  | lolcat
+echo -e "\033[33m ╰─━━━━━━━━━━━━━━━━━━━━━━━━ISALHACKER━━━━━━━━━━━━━━━━━━━━━━━─╯"  | lolcat
 #DRAW
 PUT 4 0
 figlet -f ASCII-Shadow "\ \PROC" | lolcat -t
