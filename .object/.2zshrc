@@ -39,7 +39,7 @@ draw_banner() {
 
     draw_line "╔" "╗"
     print_center ""
-    figlet -f ASCII-Shadow "\PROC" | lolcat
+    figlet -f ASCII-Shadow "\ \PROC" | lolcat
     print_center ""
     print_center "SYSTEM: ONLINE  |  USER: ROOT"
     print_center "OS : Termux-OS v3"
