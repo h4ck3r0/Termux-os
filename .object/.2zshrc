@@ -11,28 +11,31 @@ source /data/data/com.termux/files/home/.oh-my-zsh/plugins/zsh-syntax-highlighti
 
 
 #figlet -f ASCII-Shadow "  h4ck3r" | lolcat -t
+clear
 
-PUT(){ echo -en "\033[${1};${2}H";}
-DRAW(){ echo -en "\033%";echo -en "\033(0";}
-WRITE(){ echo -en "\033(B";}
-HIDECURSOR(){ echo -en "\033[?25l";}
-HIDECURSOR
-echo -e ""
-#DRAW
-#figlet -f ASCII-Shadow "Pro" | lolcat -t
-PUT 2 0
-echo -e "\033[33m -================= ≫ ──── ≪•◦ ❈ ◦•≫ ──── ≪=================-" | lolcat
-echo -e "\033[33m │                                                          │"
-echo -e "\033[33m │                                                          │"
-echo -e "\033[33m │                                                          │"
-echo -e "\033[33m │                                                          │"
-echo -e "\033[33m │                                                          │"
-echo -e "\033[33m │                                                          │"
-echo -e "\033[33m │                                                          │"
-echo -e "\033[33m │                                                          │"
-echo -e "\033[33m │                                                          │"
-echo -e "\033[33m ╰─━━━━━━━━━━━━━━━━━━━━━━━━Termux-os━━━━━━━━━━━━━━━━━━━━━━━─╯"  | lolcat
-#DRAW
+draw_banner() {
+    # Define colors
+    cyan='\033[0;36m'
+    reset='\033[0m'
+    
+    # Top of the Box
+    echo -e "${cyan} ╔════════════════════════════════════════════╗${reset}"
+    echo -e "${cyan} ║                                            ║${reset}"
+    
+    # Big Text "PROC" (Rainbow Color)
+    figlet -f ASCII-Shadow "\PROC" | lolcat
+    
+    # Info Section
+    echo -e "${cyan} ║                                            ║${reset}"
+    echo -e "${cyan} ║        SYSTEM: ONLINE  |  USER: ROOT       ║${reset}"
+    echo -e "${cyan} ║        OS    : Termux-OS v3                ║${reset}"
+    echo -e "${cyan} ║        SECURE CONNECTION ESTABLISHED       ║${reset}"
+    echo -e "${cyan} ║                                            ║${reset}"
+    echo -e "${cyan} ╚════════════════════════════════════════════╝${reset}"
+}
+
+# Run the banner
+draw_banner
 PUT 4 0
 figlet -f ASCII-Shadow "\PROC" | lolcat -t
 PUT 4 0
