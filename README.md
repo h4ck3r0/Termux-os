@@ -86,7 +86,7 @@ bash os.sh
 [https://youtu.be/VSG2glraCws](https://youtu.be/VSG2glraCws)
 
 📖 **Detailed Guide:**
-[https://www.h4ck3r.me/how-to-install-theme-in-termux-in-one-click/](https://www.h4ck3r.me/how-to-install-theme-in-termux-in-one-click/)
+[Termux Banner: How to Add Professional Hacker Style [2026 Script]](https://www.h4ck3r.me/how-to-install-theme-in-termux-in-one-click/)
 
 ---
 
