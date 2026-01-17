@@ -41,11 +41,11 @@ banner() {
     echo -e "${C} / / / _ \/ ___/ __ '__ \/ / / / |/_/${R}/ // /\ \  "
     echo -e "${C}/_/  \___/_/  /_/ /_/ /_/\__,_/_/|_| ${R}\___/___/  "
     echo -e "                                      "
-    echo -e "${W}      --[ ${G}System Optimization Tool ${W}]--       "
+    echo -e "${W}      --[ ${G}Termux Optimization Tool ${W}]--       "
     echo -e ""
     
     echo -e "${R} [!]${W} Author  : ${C}Raj Aryan (H4Ck3R0)"
-    echo -e "${R} [!]${W} Version : ${Y}v2.5 (Stable)"
+    echo -e "${R} [!]${W} Version : ${Y}v3.5 (Stable)"
     echo -e "${R} [!]${W} Youtube : ${W}youtube.com/h4ck3r0"
     echo -e "${R} [!]${W} GitHub  : ${W}github.com/H4Ck3R0"
     echo -e ""
@@ -69,6 +69,7 @@ banner
     echo -ne "${Y}Create Access Key: ${RS}"
     read -s new_pass
     echo
+    
     lock_code="#LOCK_START
 clear
 echo -e '\033[1;32m'
@@ -99,9 +100,22 @@ while [ \$attempt -le 3 ]; do
     fi
 done
 #LOCK_END"
-    echo "$lock_code" >> ~/.bashrc
-    [ -f ~/.zshrc ] && echo "$lock_code" >> ~/.zshrc
-    echo -e "${G}Lock Configured Successfully.${RS}"
+
+    add_to_top() {
+        local file=$1
+        if [ -f "$file" ]; then
+            echo "$lock_code" > "$file.tmp"
+            cat "$file" >> "$file.tmp"
+            mv "$file.tmp" "$file"
+        else
+            echo "$lock_code" > "$file"
+        fi
+    }
+
+    add_to_top ~/.bashrc
+    [ -f ~/.zshrc ] && add_to_top ~/.zshrc
+
+    echo -e "${G}Lock Configured at the TOP of files.${RS}"
     sleep 2
     menu
 }
