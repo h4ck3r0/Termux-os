@@ -1,15 +1,13 @@
 
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Tool-Termux--OS-green?style=flat-square">
-  <img src="https://img.shields.io/badge/Version-3.0-green?style=flat-square">
-  <img src="https://img.shields.io/badge/Maintained-Yes-green?style=flat-square">
-</p>
-
-<p align="center">
   <img src="https://user-images.githubusercontent.com/46929618/150730092-337cd5de-f376-454a-9418-c884bdb5f5e0.png" width="900">
 </p>
-
+<p align="center">
+  <img src="https://img.shields.io/badge/Tool-Termux--OS-green?style=flat-square">
+  <img src="https://img.shields.io/badge/Version-3.5-green?style=flat-square">
+  <img src="https://img.shields.io/badge/Maintained-Yes-green?style=flat-square">
+</p>
 <p align="center">
   <a href="https://github.com/h4ck3r0">
     <img src="https://img.shields.io/badge/H4CK3R-Raj-brightgreen?style=for-the-badge&logo=github">
@@ -36,6 +34,7 @@
 It focuses on improving usability and appearance while keeping setup simple and automated.
 
 **Highlights**
+- **NEW:** Cyber Lock System (Bash/Zsh)
 - Zsh-based environment
 - Clean and minimal Termux look
 - One-click configuration
@@ -43,6 +42,9 @@ It focuses on improving usability and appearance while keeping setup simple and 
 ---
 
 ## Features
+
+### 🔒 Cyber Lock System (Security)
+Secure your terminal with a login gate. If the password is failed 3 times, the session auto-closes. Easily install or remove from the menu.
 
 ### Extra Termux Keys
 <p align="center">
@@ -77,16 +79,15 @@ It focuses on improving usability and appearance while keeping setup simple and 
 ## Installation
 
 ```bash
-git clone https://github.com/h4ck3r0/Termux-os
+git clone [https://github.com/h4ck3r0/Termux-os](https://github.com/h4ck3r0/Termux-os)
 cd Termux-os
 bash os.sh
-````
 
-📺 **Full Installation Video:**
-[https://youtu.be/VSG2glraCws](https://youtu.be/VSG2glraCws)
+```
 
-📖 **Detailed Guide:**
-[https://www.h4ck3r.me/how-to-install-theme-in-termux-in-one-click/](https://www.h4ck3r.me/how-to-install-theme-in-termux-in-one-click/)
+📺 **Full Installation Video:** [https://youtu.be/VSG2glraCws](https://youtu.be/VSG2glraCws)
+
+📖 **Detailed Guide:** [https://www.h4ck3r.me/how-to-install-theme-in-termux-in-one-click/](https://www.h4ck3r.me/how-to-install-theme-in-termux-in-one-click/)
 
 ---
 
@@ -100,17 +101,17 @@ bash os.sh
 ## Connect
 
 <p>
-  <a href="https://github.com/h4ck3r0">
-    <img src="https://img.shields.io/badge/GitHub-H4CK3R-green?style=for-the-badge&logo=github">
-  </a>
-  <a href="https://www.h4ck3r.me">
-    <img src="https://img.shields.io/badge/Website-Visit-yellow?style=for-the-badge">
-  </a>
-  <a href="https://t.me/h4ck3r_group">
-    <img src="https://img.shields.io/badge/Telegram-Channel-blue?style=for-the-badge&logo=telegram">
-  </a>
-  <a href="https://rebrand.ly/7elzgww">
-    <img src="https://img.shields.io/badge/YouTube-H4CK3R-red?style=for-the-badge&logo=youtube">
-  </a>
+<a href="https://github.com/h4ck3r0">
+<img src="https://img.shields.io/badge/GitHub-H4CK3R-green?style=for-the-badge&logo=github">
+</a>
+<a href="https://www.h4ck3r.me">
+<img src="https://img.shields.io/badge/Website-Visit-yellow?style=for-the-badge">
+</a>
+<a href="https://t.me/h4ck3r_group">
+<img src="https://img.shields.io/badge/Telegram-Channel-blue?style=for-the-badge&logo=telegram">
+</a>
+<a href="https://rebrand.ly/7elzgww">
+<img src="https://img.shields.io/badge/YouTube-H4CK3R-red?style=for-the-badge&logo=youtube">
+</a>
 </p>
----
+
