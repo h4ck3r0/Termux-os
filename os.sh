@@ -63,8 +63,8 @@ banner
 5line() { rm -rf ~/.zshrc; cd ~/Termux-os/.object; bash .2.sh; clear ; cd ~/Termux-os ; bash os.sh; }
 6line() { cd ~/Termux-os/.object; bash .1.sh; clear ; cd ~/Termux-os ; bash os.sh; }
 7line() { cd ~/Termux-os/.object; rm -rf ~/.zshrc; chsh -s zsh; bash .3.sh; clear ; cd ~/Termux-os ; bash os.sh; }
-8line() { rm -rf ~/Termux-os; cd; git clone https://github.com/h4ck3r0/Termux-os; cd ~/Termux-os ; bash os.sh; }
-9line() {
+10line() { rm -rf ~/Termux-os; cd; git clone https://github.com/h4ck3r0/Termux-os; cd ~/Termux-os ; bash os.sh; }
+8line() {
     echo -e "\n${C}Initialising Security Protocol...${RS}"
     echo -ne "${Y}Create Access Key: ${RS}"
     read -s new_pass
@@ -120,7 +120,7 @@ done
     menu
 }
 
-10line() {
+9line() {
     sed -i '/#LOCK_START/,/#LOCK_END/d' ~/.bashrc
     [ -f ~/.zshrc ] && sed -i '/#LOCK_START/,/#LOCK_END/d' ~/.zshrc
     echo -e "${R}Security Protocol Deactivated.${RS}"
@@ -130,31 +130,32 @@ done
 
 menu() {
     banner
-    printf "\n${left_pad}${R}[${W}1${R}]${G} Necessary Setup"
-    printf "\n${left_pad}${R}[${W}2${R}]${G} Zsh Setup"
-    printf "\n${left_pad}${R}[${W}3${R}]${G} Zsh Shell"
-    printf "\n${left_pad}${R}[${W}4${R}]${G} Bash Shell"
-    printf "\n${left_pad}${R}[${W}5${R}]${G} Zsh Banner"
-    printf "\n${left_pad}${R}[${W}6${R}]${G} Zsh Theme"
-    printf "\n${left_pad}${R}[${W}7${R}]${G} Highlight / AutoSuggest"
-    printf "\n${left_pad}${R}[${W}8${R}]${G} Update"
-    printf "\n${left_pad}${R}[${W}9${R}]${B} Add Cyber Lock"
-    printf "\n${left_pad}${R}[${W}10${R}]${R} Remove Lock"
-    printf "\n${left_pad}${R}[${W}0${R}]${G} Exit\n\n"
+    printf "\n${left_pad}${C}[${W}01${C}]${G} Necessary Setup"
+    printf "\n${left_pad}${C}[${W}02${C}]${G} Zsh Setup"
+    printf "\n${left_pad}${C}[${W}03${C}]${G} Zsh Shell"
+    printf "\n${left_pad}${C}[${W}04${C}]${G} Bash Shell"
+    printf "\n${left_pad}${C}[${W}05${C}]${Y} Zsh Banner"
+    printf "\n${left_pad}${C}[${W}06${C}]${Y} Zsh Theme"
+    printf "\n${left_pad}${C}[${W}07${C}]${Y} Highlight / AutoSuggest"
+    printf "\n${left_pad}${C}[${W}08${C}]${B} Add Cyber Lock ${R}(Top Security)"
+    printf "\n${left_pad}${C}[${W}09${C}]${R} Remove Lock"
+    printf "\n${left_pad}${C}[${W}10${C}]${W} Update Script"
+    printf "\n${left_pad}${C}[${W}00${C}]${R} Exit Terminal\n\n"
+    
     echo -ne "${left_pad}${C}Selection: ${RS}"
     read a
     case $a in
-        1) 1line ;;
-        2) 2line ;;
-        3) 3line ;;
-        4) 4line ;;
-        5) 5line ;;
-        6) 6line ;;
-        7) 7line ;;
-        8) 8line ;;
-        9) 9line ;;
-        10) 10line ;;
-        0) exit ;;
+        1|01) 1line ;;
+        2|02) 2line ;;
+        3|03) 3line ;;
+        4|04) 4line ;;
+        5|05) 5line ;;
+        6|06) 6line ;;
+        7|07) 7line ;;
+        8|08) 9line ;;   # This points to your Cyber Lock function
+        9|09) 10line ;;  # This points to your Remover function
+        10) 8line ;;     # This points to your Update function
+        0|00) exit ;;
         *) menu ;;
     esac
 }
