@@ -28,22 +28,33 @@ print_center() {
 
 banner() {
     clear
-    echo -e "${R} ________     _____    ______       __    __     __    __   __     __  " 
-    echo -e "${R}(___  ___)   / ___/   (    __ \      \ \  / /     ) )  ( (  (_ \   / _) " 
-    echo -e "${C}    ) )     ( (__      ) (__) )      () \/ ()     ( (    ) )   \ \_/ /   " 
-    echo -e "${C}   ( (       ) __)    (    __/       / _  _ \      ) )  ( (     \   /     "  
-    echo -e "${B}    ) )     ( (        ) \ \  _      / / \/ \ \     ( (    ) )     / _ \    " 
-    echo -e "${B}   ( (       \ \___   ( ( \ \_))    /_/      \_\     ) \__/ (     _/ / \ \_  " 
-    echo -e "${G}   /__\       \____\   )_) \__/    (/          \)  \______/  (__/   \__)"
+    
+    local R="\e[1;31m" 
+    local G="\e[1;32m" 
+    local C="\e[1;36m" 
+    local W="\e[1;37m"
+    local Y="\e[1;33m" 
+    local N="\e[0m"    
+
+    echo -e "${C} ______                              ${R}  ___  ____"
+    echo -e "${C}/_  __/__  _________ ___  __  ___  __${R} / _ \/ __/"
+    echo -e "${C} / / / _ \/ ___/ __ '__ \/ / / / |/_/${R}/ // /\ \  "
+    echo -e "${C}/_/  \___/_/  /_/ /_/ /_/\__,_/_/|_| ${R}\___/___/  "
+    echo -e "                                      "
+    echo -e "${W}      --[ ${G}System Optimization Tool ${W}]--       "
     echo -e ""
-    echo -e "${left_pad}${R}Youtube${C} / ${W}youtube.com/h4ck3r0"
-    echo -e "${left_pad}${R}Github${C} / ${Y}H4Ck3R0"
-    echo -e "${left_pad}${R}Telegram${C} / ${G}H4Ck3_R0"
-    echo ""
-    draw_line "╔" "╗"
-    print_center "[√] by Raj Aryan / youtube.com/h4ck3r0" "$G"
-    draw_line "╚" "╝"
+    
+    echo -e "${R} [!]${W} Author  : ${C}Raj Aryan (H4Ck3R0)"
+    echo -e "${R} [!]${W} Version : ${Y}v2.5 (Stable)"
+    echo -e "${R} [!]${W} Youtube : ${W}youtube.com/h4ck3r0"
+    echo -e "${R} [!]${W} GitHub  : ${W}github.com/H4Ck3R0"
+    echo -e ""
+    
+    echo -e "${G} ==============================================${N}"
+    echo -e ""
 }
+
+banner
 
 1line() { apt update && apt upgrade; pkg install zsh git figlet toilet ruby wget curl -y; gem install lolcat; clear; cd ~/Termux-os/.object/ && cp -r 'ANSI Shadow.flf' $PREFIX/share/figlet/ASCII-Shadow.flf; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; pkg install toilet figlet exa -y; cd ~/Termux-os/.object; rm -rf ~/.termux/colors.properties; rm -rf /data/data/com.termux/files/usr/etc/motd; cp -r .colors.properties ~/.termux/colors.properties; cp -r .termux.properties ~/.termux.properties; curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf > ~/.termux/font.ttf; clear; cd ~/Termux-os ; bash os.sh; termux-open-url h4ck3r.me && termux-reload-settings; }
 2line() { rm -rf ~/.zshrc; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc; cd ~/Termux-os ; bash os.sh; }
