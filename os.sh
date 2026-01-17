@@ -70,38 +70,38 @@ banner
     read -s new_pass
     echo
     lock_code="#LOCK_START
-    clear
-    echo -e '\033[1;32m'
-    echo '  System check...'
-    sleep 0.2
-    echo '  Encrypted link established.'
-    sleep 0.2
-    clear
-    attempt=1
-    while [ \$attempt -le 3 ]; do
-        echo -e \"\n${C}╔══════════════════════════════════════╗\"
-        echo -e \"║        ${R}SECURE SHELL ACCESS           ${C}║\"
-        echo -e \"╚══════════════════════════════════════╝${RS}\"
-        echo -ne \"${Y} [Attempt \$attempt/3] Enter Key: ${RS}\"
-        read -s pass_input
-        echo
-        if [ \"\$pass_input\" == \"$new_pass\" ]; then
-            echo -e \"${G} ACCESS GRANTED.${RS}\"
-            sleep 1
-            clear
-            break
-        else
-            echo -e \"${R} DENIED.${RS}\"
-            if [ \$attempt -eq 3 ]; then
-                exit
-            fi
-            ((attempt++))
+clear
+echo -e '\033[1;32m'
+echo '  System check...'
+sleep 0.2
+echo '  Encrypted link established.'
+sleep 0.2
+clear
+attempt=1
+while [ \$attempt -le 3 ]; do
+    echo -e \"\n${C}╔══════════════════════════════════════╗\"
+    echo -e \"║        ${R}SECURE SHELL ACCESS           ${C}║\"
+    echo -e \"╚══════════════════════════════════════╝${RS}\"
+    echo -ne \"${Y} [Attempt \$attempt/3] Enter Key: ${RS}\"
+    read -s pass_input
+    echo
+    if [ \"\$pass_input\" = \"$new_pass\" ]; then
+        echo -e \"${G} ACCESS GRANTED.${RS}\"
+        sleep 1
+        clear
+        break
+    else
+        echo -e \"${R} DENIED.${RS}\"
+        if [ \$attempt -eq 3 ]; then
+            exit
         fi
-    done
-    #LOCK_END"
+        attempt=\$((attempt + 1))
+    fi
+done
+#LOCK_END"
     echo "$lock_code" >> ~/.bashrc
     [ -f ~/.zshrc ] && echo "$lock_code" >> ~/.zshrc
-    echo -e "${G}Lock Configured. Your files remain untouched.${RS}"
+    echo -e "${G}Lock Configured Successfully.${RS}"
     sleep 2
     menu
 }
