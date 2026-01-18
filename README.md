@@ -83,7 +83,7 @@ Secure your terminal with a login gate. If the password is failed 3 times, the s
 ## Installation
 
 ```bash
-git clone [https://github.com/h4ck3r0/Termux-os](https://github.com/h4ck3r0/Termux-os)
+git clone https://github.com/h4ck3r0/Termux-os
 cd Termux-os
 bash os.sh
 
