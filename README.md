@@ -45,6 +45,10 @@ It focuses on improving usability and appearance while keeping setup simple and 
 
 ### 🔒 Cyber Lock System (Security)
 Secure your terminal with a login gate. If the password is failed 3 times, the session auto-closes. Easily install or remove from the menu.
+<p align="center">
+  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQpAEhEZoOyNzsfpBAC8BMjJfc-8XRzVWYGY8GzE2-y9gvl4ylhPIrqC9cYhkV2dCXoEAZBSEUF00LEiGQIvJUAA_Kj849C8A6ONdUuciYYduEzjyZfruoYVsRF4PRzlJrtyRPM4sxaXotf-J2qmuQ-5l29kR0ZHHBA-uA5bAjrJSRoPyzlf4YHU9boSlv/s1080/WhatsApp%20Image%202026-01-18%20at%205.25.25%20AM.jpeg" width="300">
+</p>
+
 
 ### Extra Termux Keys
 <p align="center">
