@@ -75,6 +75,7 @@ banner
     read -s new_pass
     echo
     
+    # Lock code for Bash/Zsh
     lock_code="#LOCK_START
 clear
 echo -e '\033[1;32m'
@@ -106,20 +107,52 @@ while [ \$attempt -le 3 ]; do
 done
 #LOCK_END"
 
+    # Lock code for Fish (using fish syntax)
+    lock_code_fish="#LOCK_START
+clear
+echo -e '\033[1;32m'
+echo '  System check...'
+sleep 0.2
+echo '  Encrypted link established.'
+sleep 0.2
+clear
+set attempt 1
+while test \$attempt -le 3
+    echo -e \"\n${C}╔══════════════════════════════════════╗\"
+    echo -e \"║        ${R}SECURE SHELL ACCESS           ${C}║\"
+    echo -e \"╚══════════════════════════════════════╝${RS}\"
+    read -s -p \"${Y} [Attempt \$attempt/3] Enter Key: ${RS}\" pass_input
+    echo
+    if test \"\$pass_input\" = \"$new_pass\"
+        echo -e \"${G} ACCESS GRANTED.${RS}\"
+        sleep 1
+        clear
+        break
+    else
+        echo -e \"${R} DENIED.${RS}\"
+        if test \$attempt -eq 3
+            exit
+        end
+        set attempt (math \$attempt + 1)
+    end
+end
+#LOCK_END"
+
     add_to_top() {
         local file=$1
+        local code=$2
         if [ -f "$file" ]; then
-            echo "$lock_code" > "$file.tmp"
+            echo "$code" > "$file.tmp"
             cat "$file" >> "$file.tmp"
             mv "$file.tmp" "$file"
         else
-            echo "$lock_code" > "$file"
+            echo "$code" > "$file"
         fi
     }
 
-    add_to_top ~/.bashrc
-    [ -f ~/.zshrc ] && add_to_top ~/.zshrc
-    [ -f ~/.config/fish/config.fish ] && add_to_top ~/.config/fish/config.fish
+    add_to_top ~/.bashrc "$lock_code"
+    [ -f ~/.zshrc ] && add_to_top ~/.zshrc "$lock_code"
+    [ -f ~/.config/fish/config.fish ] && add_to_top ~/.config/fish/config.fish "$lock_code_fish"
 
     echo -e "${G}Lock Configured at the TOP of files.${RS}"
     sleep 2
