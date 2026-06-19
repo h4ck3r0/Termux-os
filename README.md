@@ -34,8 +34,8 @@
 It focuses on improving usability and appearance while keeping setup simple and automated.
 
 **Highlights**
-- **NEW:** Cyber Lock System (Bash/Zsh)
-- Zsh-based environment
+- **NEW:** Cyber Lock System (Bash/Zsh/fish)
+- Zsh and Fish shell support
 - Clean and minimal Termux look
 - One-click configuration
 
@@ -46,7 +46,7 @@ It focuses on improving usability and appearance while keeping setup simple and 
 ### 🔒 Cyber Lock System (Security)
 Secure your terminal with a login gate. If the password is failed 3 times, the session auto-closes. Easily install or remove from the menu.
 <p align="center">
-  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQpAEhEZoOyNzsfpBAC8BMjJfc-8XRzVWYGY8GzE2-y9gvl4ylhPIrqC9cYhkV2dCXoEAZBSEUF00LEiGQIvJUAA_Kj849C8A6ONdUuciYYduEzjyZfruoYVsRF4PRzlJrtyRPM4sxaXotf-J2qmuQ-5l29kR0ZHHBA-uA5bAjrJSRoPyzlf4YHU9boSlv/s1080/WhatsApp%20Image%202026-01-18%20at%205.25.25%20AM.jpeg" width="300">
+  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQpAEhEZoOyNzsfpBAC8BMjJfc-8XRzVWYGY8GzE2-y9gvl4ylhPIrqC9cYhkV2dCXoEAZBSEUF00LEiGQIvJUAA_Kj849C8A6ONdUuciYYduEzjyZfruoYVsRF4P[...]
 </p>
 
 
@@ -60,7 +60,7 @@ Secure your terminal with a login gate. If the password is failed 3 times, the s
   <img src="https://user-images.githubusercontent.com/46929618/150729923-9f0415aa-d0fd-46c7-86cb-1ef65affffcb.jpg" width="300">
 </p>
 
-### Custom Zsh Theme
+### Custom Zsh & Fish Themes
 <p align="center">
   <img src="https://user-images.githubusercontent.com/46929618/150729435-7eea5d74-8474-427a-9ada-a8d50da91136.jpg" width="300">
 </p>
@@ -98,6 +98,7 @@ bash os.sh
 ## Credits
 
 * Oh My Zsh
+* Fish Shell Community
 * Raj Aryan (H4CK3R)
 
 ---
@@ -118,4 +119,3 @@ bash os.sh
 <img src="https://img.shields.io/badge/YouTube-H4CK3R-red?style=for-the-badge&logo=youtube">
 </a>
 </p>
-
