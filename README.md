@@ -34,7 +34,7 @@
 It focuses on improving usability and appearance while keeping setup simple and automated.
 
 **Highlights**
-- **NEW:** Cyber Lock System (Bash/Zsh)
+- **NEW:** Cyber Lock System (Bash/Zsh/fish)
 - Zsh and Fish shell support
 - Clean and minimal Termux look
 - One-click configuration
