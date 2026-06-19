@@ -1,0 +1,89 @@
+#!/usr/bin/env fish
+
+# Set fish theme
+set fish_greeting
+
+# Color definitions
+set -gx CLICOLOR 1
+set -gx CLICOLOR_FORCE 1
+
+# Banner function
+function draw_banner
+    set BOX_WIDTH 56
+    set cyan '\033[0;36m'
+    set green '\033[0;32m'
+    set reset '\033[0m'
+    
+    # Helper function to print centered text
+    function print_center
+        set text $argv[1]
+        set text_len (string length $text)
+        set space_len (math "($BOX_WIDTH - 2 - $text_len) / 2")
+        printf "$cyan ║%*s$reset%s$cyan%*s║$reset\n" $space_len "" "$text" (math "$BOX_WIDTH - 2 - $text_len - $space_len") ""
+    end
+    
+    # Helper function to draw lines
+    function draw_line
+        set char $argv[1]
+        set end $argv[2]
+        printf "$cyan %s" "$char"
+        for i in (seq 1 (math "$BOX_WIDTH - 2"))
+            printf "═"
+        end
+        printf "%s$reset\n" "$end"
+    end
+    
+    clear
+    draw_line "╔" "╗"
+    print_center ""
+    
+    # FIGLET banner centered (using toilet alternative for fish)
+    echo -e "\033[1;32m╔════════════════════════════════════════════════════╗\033[0m"
+    echo -e "\033[1;36m║\033[0m         \033[1;35m█ █ ╄ ▄▀█ █▀▀ █ █ █▀▀ █▀▄\033[0m        \033[1;36m║\033[0m"
+    echo -e "\033[1;36m║\033[0m         \033[1;35m█▀█ ║ █▀▄ █   █ █ █▀▀ █ █\033[0m        \033[1;36m║\033[0m"
+    echo -e "\033[1;36m║\033[0m         \033[1;35m█ █ ▀ ▀ ▀ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀ \033[0m        \033[1;36m║\033[0m"
+    echo -e "\033[1;32m╚════════════════════════════════════════════════════╝\033[0m"
+    
+    print_center ""
+    print_center "SYSTEM: ONLINE  |  USER: ROOT"
+    print_center "OS : Termux-OS v3 (Fish Shell)"
+    print_center "SECURE CONNECTION ESTABLISHED"
+    print_center ""
+    draw_line "╚" "╝"
+end
+
+# Initialize banner on startup
+draw_banner
+
+# Aliases for common commands
+alias l='exa -la'
+alias ls='exa -la'
+alias cat='bat'
+alias ll='exa -l'
+
+# Set prompt
+function fish_prompt
+    set_color cyan
+    echo -n "┌─["
+    set_color green
+    echo -n (whoami)
+    set_color cyan
+    echo -n "@"
+    set_color yellow
+    echo -n (hostname)
+    set_color cyan
+    echo -n "]─["
+    set_color magenta
+    echo -n (pwd)
+    set_color cyan
+    echo -n "]"
+    echo
+    echo -n "└─> "
+    set_color normal
+end
+
+# Fish history settings
+set -gx fish_history max
+
+# Vi keybindings (optional)
+# fish_vi_key_bindings

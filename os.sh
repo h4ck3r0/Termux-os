@@ -56,13 +56,18 @@ banner() {
 
 banner
 
-1line() { apt update && apt upgrade; pkg install zsh git figlet toilet ruby wget curl -y; gem install lolcat; clear; cd ~/Termux-os/.object/ && cp -r 'ANSI Shadow.flf' $PREFIX/share/figlet/ASCII-Shadow.flf; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; pkg install toilet figlet exa -y; cd ~/Termux-os/.object; rm -rf ~/.termux/colors.properties; rm -rf /data/data/com.termux/files/usr/etc/motd; cp -r .colors.properties ~/.termux/colors.properties; cp -r .termux.properties ~/.termux.properties; curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf > ~/.termux/font.ttf; clear; cd ~/Termux-os ; bash os.sh; termux-open-url h4ck3r.me && termux-reload-settings; }
+1line() { apt update && apt upgrade; pkg install zsh fish git figlet toilet ruby wget curl bat exa -y; gem install lolcat; clear; cd ~/Termux-os/.object/ && cp -r 'ANSI Shadow.flf' $PREFIX/share/figlet/ASCII-Shadow.flf; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; mkdir -p ~/.config/fish; pkg install toilet figlet exa -y; cd ~/Termux-os/.object; rm -rf ~/.termux/colors.properties; rm -rf /data/data/com.termux/files/usr/etc/motd; cp -r .colors.properties ~/.termux/colors.properties; cp -r .termux.properties ~/.termux.properties; curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf > ~/.termux/font.ttf; cp -r .1fishrc ~/.config/fish/config.fish; clear; cd ~/Termux-os ; bash os.sh; termux-open-url h4ck3r.me && termux-reload-settings; }
 2line() { rm -rf ~/.zshrc; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc; cd ~/Termux-os ; bash os.sh; }
 3line() { pkg install zsh; chsh -s zsh; cd ~/Termux-os ; bash os.sh; }
 4line() { chsh -s bash; cd ~/Termux-os ; bash os.sh; }
 5line() { rm -rf ~/.zshrc; cd ~/Termux-os/.object; bash .2.sh; clear ; cd ~/Termux-os ; bash os.sh; }
 6line() { cd ~/Termux-os/.object; bash .1.sh; clear ; cd ~/Termux-os ; bash os.sh; }
 7line() { cd ~/Termux-os/.object; rm -rf ~/.zshrc; chsh -s zsh; bash .3.sh; clear ; cd ~/Termux-os ; bash os.sh; }
+11line() { pkg install fish; mkdir -p ~/.config/fish; cp ~/.config/fish/config.fish ~/.config/fish/config.fish.bak 2>/dev/null || true; cp ~/Termux-os/.object/.1fishrc ~/.config/fish/config.fish; cd ~/Termux-os ; bash os.sh; }
+12line() { pkg install fish; chsh -s fish; mkdir -p ~/.config/fish; cp ~/Termux-os/.object/.1fishrc ~/.config/fish/config.fish; cd ~/Termux-os ; bash os.sh; }
+13line() { mkdir -p ~/.config/fish; cd ~/Termux-os/.object; bash .1fish.sh; clear ; cd ~/Termux-os ; bash os.sh; }
+14line() { mkdir -p ~/.config/fish; cd ~/Termux-os/.object; bash .2fish.sh; clear ; cd ~/Termux-os ; bash os.sh; }
+15line() { mkdir -p ~/.config/fish; cd ~/Termux-os/.object; bash .3fish.sh; clear ; cd ~/Termux-os ; bash os.sh; }
 10line() { rm -rf ~/Termux-os; cd; git clone https://github.com/h4ck3r0/Termux-os; cd ~/Termux-os ; bash os.sh; }
 8line() {
     echo -e "\n${C}Initialising Security Protocol...${RS}"
@@ -114,6 +119,7 @@ done
 
     add_to_top ~/.bashrc
     [ -f ~/.zshrc ] && add_to_top ~/.zshrc
+    [ -f ~/.config/fish/config.fish ] && add_to_top ~/.config/fish/config.fish
 
     echo -e "${G}Lock Configured at the TOP of files.${RS}"
     sleep 2
@@ -123,6 +129,7 @@ done
 9line() {
     sed -i '/#LOCK_START/,/#LOCK_END/d' ~/.bashrc
     [ -f ~/.zshrc ] && sed -i '/#LOCK_START/,/#LOCK_END/d' ~/.zshrc
+    [ -f ~/.config/fish/config.fish ] && sed -i '/#LOCK_START/,/#LOCK_END/d' ~/.config/fish/config.fish
     echo -e "${R}Security Protocol Deactivated.${RS}"
     sleep 2
     menu
@@ -131,32 +138,84 @@ done
 menu() {
     banner
     printf "\n${left_pad}${C}[${W}01${C}]${G} Necessary Setup"
-    printf "\n${left_pad}${C}[${W}02${C}]${G} Zsh Setup"
-    printf "\n${left_pad}${C}[${W}03${C}]${G} Zsh Shell"
+    printf "\n${left_pad}${C}[${W}02${C}]${G} Zsh Options"
+    printf "\n${left_pad}${C}[${W}03${C}]${G} Fish Options"
     printf "\n${left_pad}${C}[${W}04${C}]${G} Bash Shell"
-    printf "\n${left_pad}${C}[${W}05${C}]${Y} Zsh Banner"
-    printf "\n${left_pad}${C}[${W}06${C}]${Y} Zsh Theme"
-    printf "\n${left_pad}${C}[${W}07${C}]${Y} Highlight / AutoSuggest"
-    printf "\n${left_pad}${C}[${W}08${C}]${B} Add Cyber Lock ${R}(Top Security)"
-    printf "\n${left_pad}${C}[${W}09${C}]${R} Remove Lock"
-    printf "\n${left_pad}${C}[${W}10${C}]${W} Update Script"
+    printf "\n${left_pad}${C}[${W}05${C}]${B} Security & Updates"
     printf "\n${left_pad}${C}[${W}00${C}]${R} Exit Terminal\n\n"
     
     echo -ne "${left_pad}${C}Selection: ${RS}"
     read a
     case $a in
         1|01) 1line ;;
-        2|02) 2line ;;
-        3|03) 3line ;;
+        2|02) zsh_menu ;;
+        3|03) fish_menu ;;
         4|04) 4line ;;
-        5|05) 5line ;;
-        6|06) 6line ;;
-        7|07) 7line ;;
-        8|08) 9line ;;   # This points to your Cyber Lock function
-        9|09) 10line ;;  # This points to your Remover function
-        10) 8line ;;     # This points to your Update function
+        5|05) system_menu ;;
         0|00) exit ;;
         *) menu ;;
+    esac
+}
+
+zsh_menu() {
+    banner
+    printf "\n${left_pad}${C}[${W}01${C}]${G} Zsh Setup"
+    printf "\n${left_pad}${C}[${W}02${C}]${G} Switch to Zsh Shell"
+    printf "\n${left_pad}${C}[${W}03${C}]${Y} Customize Zsh Banner"
+    printf "\n${left_pad}${C}[${W}04${C}]${Y} Customize Zsh Theme"
+    printf "\n${left_pad}${C}[${W}05${C}]${Y} Install Highlight / AutoSuggest"
+    printf "\n${left_pad}${C}[${W}00${C}]${R} Back to Main Menu\n\n"
+    
+    echo -ne "${left_pad}${C}Selection: ${RS}"
+    read a
+    case $a in
+        1|01) 2line ;;
+        2|02) 3line ;;
+        3|03) 5line ;;
+        4|04) 6line ;;
+        5|05) 7line ;;
+        0|00) menu ;;
+        *) zsh_menu ;;
+    esac
+}
+
+fish_menu() {
+    banner
+    printf "\n${left_pad}${C}[${W}01${C}]${G} Fish Setup"
+    printf "\n${left_pad}${C}[${W}02${C}]${G} Switch to Fish Shell"
+    printf "\n${left_pad}${C}[${W}03${C}]${Y} Customize Fish Banner"
+    printf "\n${left_pad}${C}[${W}04${C}]${Y} Customize Fish Theme"
+    printf "\n${left_pad}${C}[${W}05${C}]${Y} Banner + Theme Setup"
+    printf "\n${left_pad}${C}[${W}00${C}]${R} Back to Main Menu\n\n"
+    
+    echo -ne "${left_pad}${C}Selection: ${RS}"
+    read a
+    case $a in
+        1|01) 11line ;;
+        2|02) 12line ;;
+        3|03) 13line ;;
+        4|04) 14line ;;
+        5|05) 15line ;;
+        0|00) menu ;;
+        *) fish_menu ;;
+    esac
+}
+
+system_menu() {
+    banner
+    printf "\n${left_pad}${C}[${W}01${C}]${B} Add Cyber Lock ${R}(Top Security)"
+    printf "\n${left_pad}${C}[${W}02${C}]${R} Remove Lock"
+    printf "\n${left_pad}${C}[${W}03${C}]${W} Update Script"
+    printf "\n${left_pad}${C}[${W}00${C}]${R} Back to Main Menu\n\n"
+    
+    echo -ne "${left_pad}${C}Selection: ${RS}"
+    read a
+    case $a in
+        1|01) 8line ;;
+        2|02) 9line ;;
+        3|03) 10line ;;
+        0|00) menu ;;
+        *) system_menu ;;
     esac
 }
 menu
