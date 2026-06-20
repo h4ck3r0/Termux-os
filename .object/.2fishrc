@@ -1,67 +1,58 @@
 #!/usr/bin/env fish
 
-# Set fish theme and greeting
+# Suppress default greeting
 set fish_greeting
 
-# Color definitions
 set -gx CLICOLOR 1
 set -gx CLICOLOR_FORCE 1
-
-# Enable autosuggestion and syntax highlighting
 set -gx fish_autosuggestion_enabled 1
 
-# Banner function with customizable name
+# Banner function with customizable name (PROC = banner name, H4ck3r = shell/user name)
 function draw_banner
     set BOX_WIDTH 56
-    set cyan '\033[0;36m'
-    set green '\033[0;32m'
-    set reset '\033[0m'
-    
+
     function print_center
         set text $argv[1]
         set text_len (string length $text)
         set space_len (math --scale=0 "floor(($BOX_WIDTH - 2 - $text_len) / 2)")
         set right_len (math --scale=0 "$BOX_WIDTH - 2 - $text_len - $space_len")
-        printf "$cyan ║%*s$reset%s$cyan%*s║$reset\n" $space_len "" "$text" $right_len ""
+        printf "\033[0;36m \u2551%*s\033[0m%s\033[0;36m%*s\u2551\033[0m\n" $space_len "" "$text" $right_len ""
     end
-    
+
     function draw_line
-        set char $argv[1]
-        set end $argv[2]
-        printf "$cyan %s" "$char"
+        set lchar $argv[1]
+        set rchar $argv[2]
+        printf "\033[0;36m %s" "$lchar"
         for i in (seq 1 (math "$BOX_WIDTH - 2"))
-            printf "═"
+            printf "\u2550"
         end
-        printf "%s$reset\n" "$end"
+        printf "%s\033[0m\n" "$rchar"
     end
-    
+
     clear
-    echo -e "\033[1;32m[*] BOOTING TERMUX-OS v3...\033[0m"
-    echo -ne "\033[1;36m[LOADING MODULES] \033[1;32m"
+    printf "\033[1;32m[*] BOOTING TERMUX-OS v3...\033[0m\n"
+    printf "\033[1;36m[LOADING MODULES] \033[1;32m"
     for i in (seq 1 25)
-        echo -ne "█"
+        printf "\u2588"
         sleep 0.02
     end
-    echo -e "\033[0m"
+    printf "\033[0m\n"
     sleep 0.4
     clear
-    
-    draw_line "╔" "╗"
+
+    draw_line "\u2554" "\u2557"
     print_center ""
-    
-    echo -e "\033[1;32m╔════════════════════════════════════════════════════╗\033[0m"
-╔    print_center "PROC"
-    echo -e "\033[1;32m╚════════════════════════════════════════════════════╝\033[0m"
-    
+    printf "\033[1;32m\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\033[0m\n"
+    print_center "PROC"
+    printf "\033[1;32m\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\033[0m\n"
     print_center ""
-    print_center "SYSTEM: ONLINE  |  USER: ROOT"
+    print_center "SYSTEM: ONLINE  |  USER: H4ck3r"
     print_center "OS : Termux-OS v3 (Fish Shell)"
     print_center "SECURE CONNECTION ESTABLISHED"
     print_center ""
-    draw_line "╚" "╝"
+    draw_line "\u255a" "\u255d"
 end
 
-# Initialize banner on startup
 draw_banner
 
 # Aliases
@@ -70,7 +61,7 @@ alias ls='exa -la'
 alias ll='exa -l'
 alias cat='bat'
 
-# Custom prompt with username indicator
+# Prompt
 function fish_prompt
     set_color cyan
     echo -n "┌─["
@@ -91,7 +82,6 @@ function fish_prompt
     set_color normal
 end
 
-# Fish history
 set -gx fish_history max
 
 # Auto suggestions style
