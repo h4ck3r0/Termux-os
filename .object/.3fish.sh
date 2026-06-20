@@ -16,13 +16,13 @@ echo ""
 cd ~/Termux-os/.object
 echo -e '\e[1;96m'
 read -p '  Type Banner Name ❯ ' name
-sed -e "s/\PROC/$name/g" .2fishrc > ~/temp_fish_config.tmp
+sed -e "s/PROC/$name/g" .2fishrc > ~/temp_fish_config.tmp
 mv ~/temp_fish_config.tmp ~/.config/fish/config.fish
 
 echo  ""
 echo -e '\e[1;96m'
 read -p '  Type Shell Name ❯ ' name
-sed -i -e "s/\H4ck3r/$name/g" ~/.config/fish/config.fish
+sed -i -e "s/H4ck3r/$name/g" ~/.config/fish/config.fish
 
 # Create directories if they don't exist
 mkdir -p ~/.config/fish/conf.d
@@ -30,6 +30,6 @@ mkdir -p ~/.config/fish/conf.d
 # Add fzf keybindings if available
 if command -v fzf &> /dev/null; then
     echo "# FZF Integration
-bind \cF 'fzf | xargs -I {} echo {}'
+bind ctrl-f 'commandline -i (fzf)'
 " >> ~/.config/fish/conf.d/fzf.fish 2>/dev/null || true
 fi
