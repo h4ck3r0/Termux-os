@@ -56,20 +56,20 @@ banner() {
 
 banner
 
-1line() { apt update && apt upgrade; pkg install zsh fish git figlet toilet ruby wget curl bat exa -y; gem install lolcat; clear; cd ~/Termux-os/.object/ && cp -r 'ANSI Shadow.flf' $PREFIX/share/figlet/ASCII-Shadow.flf; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; mkdir -p ~/.config/fish; pkg install toilet figlet exa -y; cd ~/Termux-os/.object; rm -rf ~/.termux/colors.properties; rm -rf /data/data/com.termux/files/usr/etc/motd; cp -r .colors.properties ~/.termux/colors.properties; cp -r .termux.properties ~/.termux.properties; curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf > ~/.termux/font.ttf; cp -r .1fishrc ~/.config/fish/config.fish; clear; cd ~/Termux-os ; bash os.sh; termux-open-url h4ck3r.me && termux-reload-settings; }
-2line() { rm -rf ~/.zshrc; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc; cd ~/Termux-os ; bash os.sh; }
-3line() { pkg install zsh; chsh -s zsh; cd ~/Termux-os ; bash os.sh; }
-4line() { chsh -s bash; cd ~/Termux-os ; bash os.sh; }
-5line() { rm -rf ~/.zshrc; cd ~/Termux-os/.object; bash .2.sh; clear ; cd ~/Termux-os ; bash os.sh; }
-6line() { cd ~/Termux-os/.object; bash .1.sh; clear ; cd ~/Termux-os ; bash os.sh; }
-7line() { cd ~/Termux-os/.object; rm -rf ~/.zshrc; chsh -s zsh; bash .3.sh; clear ; cd ~/Termux-os ; bash os.sh; }
-11line() { pkg install fish; mkdir -p ~/.config/fish; cp ~/.config/fish/config.fish ~/.config/fish/config.fish.bak 2>/dev/null || true; cp ~/Termux-os/.object/.1fishrc ~/.config/fish/config.fish; cd ~/Termux-os ; bash os.sh; }
-12line() { pkg install fish; chsh -s fish; mkdir -p ~/.config/fish; cp ~/Termux-os/.object/.1fishrc ~/.config/fish/config.fish; cd ~/Termux-os ; bash os.sh; }
-13line() { mkdir -p ~/.config/fish; cd ~/Termux-os/.object; bash .1fish.sh; clear ; cd ~/Termux-os ; bash os.sh; }
-14line() { mkdir -p ~/.config/fish; cd ~/Termux-os/.object; bash .2fish.sh; clear ; cd ~/Termux-os ; bash os.sh; }
-15line() { mkdir -p ~/.config/fish; cd ~/Termux-os/.object; bash .3fish.sh; clear ; cd ~/Termux-os ; bash os.sh; }
-10line() { rm -rf ~/Termux-os; cd; git clone https://github.com/h4ck3r0/Termux-os; cd ~/Termux-os ; bash os.sh; }
-8line() {
+do_full_setup()  { apt update && apt upgrade -y; pkg install zsh fish git figlet toilet ruby wget curl bat exa -y; gem install lolcat; clear; cd ~/Termux-os/.object/ && cp -r 'ANSI Shadow.flf' $PREFIX/share/figlet/ASCII-Shadow.flf; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; mkdir -p ~/.config/fish; pkg install toilet figlet exa -y; cd ~/Termux-os/.object; rm -rf ~/.termux/colors.properties; rm -rf /data/data/com.termux/files/usr/etc/motd; cp -r .colors.properties ~/.termux/colors.properties; cp -r .termux.properties ~/.termux.properties; curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf > ~/.termux/font.ttf; cp -r .1fishrc ~/.config/fish/config.fish; clear; termux-open-url h4ck3r.me; termux-reload-settings; cd ~/Termux-os ; bash os.sh; }
+do_zsh_setup()   { rm -rf ~/.zshrc; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc; cd ~/Termux-os ; bash os.sh; }
+do_zsh_switch()  { pkg install zsh; chsh -s zsh; cd ~/Termux-os ; bash os.sh; }
+do_bash_switch() { chsh -s bash; cd ~/Termux-os ; bash os.sh; }
+do_zsh_banner()  { rm -rf ~/.zshrc; cd ~/Termux-os/.object; bash .2.sh; clear ; cd ~/Termux-os ; bash os.sh; }
+do_zsh_theme()   { cd ~/Termux-os/.object; bash .1.sh; clear ; cd ~/Termux-os ; bash os.sh; }
+do_zsh_plugins() { cd ~/Termux-os/.object; rm -rf ~/.zshrc; chsh -s zsh; bash .3.sh; clear ; cd ~/Termux-os ; bash os.sh; }
+do_fish_setup()  { pkg install fish; mkdir -p ~/.config/fish; cp ~/.config/fish/config.fish ~/.config/fish/config.fish.bak 2>/dev/null || true; cp ~/Termux-os/.object/.1fishrc ~/.config/fish/config.fish; cd ~/Termux-os ; bash os.sh; }
+do_fish_switch() { pkg install fish; chsh -s fish; mkdir -p ~/.config/fish; cp ~/Termux-os/.object/.1fishrc ~/.config/fish/config.fish; cd ~/Termux-os ; bash os.sh; }
+do_fish_banner() { mkdir -p ~/.config/fish; cd ~/Termux-os/.object; bash .1fish.sh; clear ; cd ~/Termux-os ; bash os.sh; }
+do_fish_theme()  { mkdir -p ~/.config/fish; cd ~/Termux-os/.object; bash .2fish.sh; clear ; cd ~/Termux-os ; bash os.sh; }
+do_fish_full()   { mkdir -p ~/.config/fish; cd ~/Termux-os/.object; bash .3fish.sh; clear ; cd ~/Termux-os ; bash os.sh; }
+do_update()      { rm -rf ~/Termux-os; cd; git clone https://github.com/h4ck3r0/Termux-os; cd ~/Termux-os ; bash os.sh; }
+do_add_lock() {
     echo -e "\n${C}Initialising Security Protocol...${RS}"
     echo -ne "${Y}Create Access Key: ${RS}"
     read -s new_pass
@@ -159,7 +159,7 @@ end
     menu
 }
 
-9line() {
+do_remove_lock() {
     sed -i '/#LOCK_START/,/#LOCK_END/d' ~/.bashrc
     [ -f ~/.zshrc ] && sed -i '/#LOCK_START/,/#LOCK_END/d' ~/.zshrc
     [ -f ~/.config/fish/config.fish ] && sed -i '/#LOCK_START/,/#LOCK_END/d' ~/.config/fish/config.fish
@@ -173,17 +173,17 @@ menu() {
     printf "\n${left_pad}${C}[${W}01${C}]${G} Necessary Setup"
     printf "\n${left_pad}${C}[${W}02${C}]${G} Zsh Options"
     printf "\n${left_pad}${C}[${W}03${C}]${G} Fish Options"
-    printf "\n${left_pad}${C}[${W}04${C}]${G} Bash Shell"
+    printf "\n${left_pad}${C}[${W}04${C}]${G} Bash Options"
     printf "\n${left_pad}${C}[${W}05${C}]${B} Security & Updates"
     printf "\n${left_pad}${C}[${W}00${C}]${R} Exit Terminal\n\n"
     
     echo -ne "${left_pad}${C}Selection: ${RS}"
     read a
     case $a in
-        1|01) 1line ;;
+        1|01) do_full_setup ;;
         2|02) zsh_menu ;;
         3|03) fish_menu ;;
-        4|04) 4line ;;
+        4|04) bash_menu ;;
         5|05) system_menu ;;
         0|00) exit ;;
         *) menu ;;
@@ -202,13 +202,27 @@ zsh_menu() {
     echo -ne "${left_pad}${C}Selection: ${RS}"
     read a
     case $a in
-        1|01) 2line ;;
-        2|02) 3line ;;
-        3|03) 5line ;;
-        4|04) 6line ;;
-        5|05) 7line ;;
+        1|01) do_zsh_setup   ;;
+        2|02) do_zsh_switch  ;;
+        3|03) do_zsh_banner  ;;
+        4|04) do_zsh_theme   ;;
+        5|05) do_zsh_plugins ;;
         0|00) menu ;;
         *) zsh_menu ;;
+    esac
+}
+
+bash_menu() {
+    banner
+    printf "\n${left_pad}${C}[${W}01${C}]${G} Switch to Bash Shell"
+    printf "\n${left_pad}${C}[${W}00${C}]${R} Back to Main Menu\n\n"
+    
+    echo -ne "${left_pad}${C}Selection: ${RS}"
+    read a
+    case $a in
+        1|01) do_bash_switch ;;
+        0|00) menu ;;
+        *) bash_menu ;;
     esac
 }
 
@@ -224,11 +238,11 @@ fish_menu() {
     echo -ne "${left_pad}${C}Selection: ${RS}"
     read a
     case $a in
-        1|01) 11line ;;
-        2|02) 12line ;;
-        3|03) 13line ;;
-        4|04) 14line ;;
-        5|05) 15line ;;
+        1|01) do_fish_setup   ;;
+        2|02) do_fish_switch  ;;
+        3|03) do_fish_banner  ;;
+        4|04) do_fish_theme   ;;
+        5|05) do_fish_full    ;;
         0|00) menu ;;
         *) fish_menu ;;
     esac
@@ -244,9 +258,9 @@ system_menu() {
     echo -ne "${left_pad}${C}Selection: ${RS}"
     read a
     case $a in
-        1|01) 8line ;;
-        2|02) 9line ;;
-        3|03) 10line ;;
+        1|01) do_add_lock    ;;
+        2|02) do_remove_lock ;;
+        3|03) do_update      ;;
         0|00) menu ;;
         *) system_menu ;;
     esac
