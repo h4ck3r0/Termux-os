@@ -12,7 +12,7 @@ alias ll='exa -l'
 function fish_prompt
     echo
     set_color cyan
-    echo -n "\u250c\u2500["
+    printf "\u250c\u2500["
     set_color green
     echo -n (whoami)
     set_color cyan
@@ -20,13 +20,13 @@ function fish_prompt
     set_color yellow
     echo -n (hostname)
     set_color cyan
-    echo -n "]\u2500["
+    printf "]\u2500["
     set_color magenta
     echo -n (prompt_pwd)
     set_color cyan
     echo -n "]"
     echo
-    echo -n "\u2514\u2500> "
+    printf "\u2514\u2500> "
     set_color normal
 end
 
