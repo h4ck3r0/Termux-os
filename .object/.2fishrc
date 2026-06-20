@@ -63,10 +63,11 @@ alias cat='bat'
 
 # Prompt
 function fish_prompt
+    echo
     set_color cyan
     echo -n "┌─["
     set_color green
-    echo -n (whoami)
+    echo -n "H4ck3r"
     set_color cyan
     echo -n "@"
     set_color yellow
@@ -74,7 +75,7 @@ function fish_prompt
     set_color cyan
     echo -n "]─["
     set_color magenta
-    echo -n (pwd)
+    echo -n (prompt_pwd)
     set_color cyan
     echo -n "]"
     echo

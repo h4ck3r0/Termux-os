@@ -54,6 +54,7 @@ alias ll='exa -l'
 
 # Prompt
 function fish_prompt
+    echo
     set_color cyan
     echo -n "┌─["
     set_color green
@@ -65,7 +66,7 @@ function fish_prompt
     set_color cyan
     echo -n "]─["
     set_color magenta
-    echo -n (pwd)
+    echo -n (prompt_pwd)
     set_color cyan
     echo -n "]"
     echo
