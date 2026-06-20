@@ -5,7 +5,6 @@ set -gx CLICOLOR 1
 set -gx CLICOLOR_FORCE 1
 set -gx fish_autosuggestion_enabled 1
 
-# Global so print_center and draw_line can access it
 set -g BOX_WIDTH 56
 
 function print_center
@@ -40,9 +39,7 @@ function draw_banner
 
     draw_line \u2554 \u2557
     print_center ""
-    printf " \033[1;32m\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\033[0m\n"
-    print_center "PROC"
-    printf " \033[1;32m\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\033[0m\n"
+    figlet -c -f ASCII-Shadow -w $BOX_WIDTH "PROC" 2>/dev/null | lolcat 2>/dev/null; or printf "\033[1;35m  PROC\033[0m\n"
     print_center ""
     print_center "SYSTEM: ONLINE  |  USER: H4ck3r"
     print_center "OS : Termux-OS v3 (Fish Shell)"
