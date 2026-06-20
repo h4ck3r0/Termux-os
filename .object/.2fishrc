@@ -20,8 +20,9 @@ function draw_banner
     function print_center
         set text $argv[1]
         set text_len (string length $text)
-        set space_len (math "($BOX_WIDTH - 2 - $text_len) / 2")
-        printf "$cyan ║%*s$reset%s$cyan%*s║$reset\n" $space_len "" "$text" (math "$BOX_WIDTH - 2 - $text_len - $space_len") ""
+        set space_len (math --scale=0 "floor(($BOX_WIDTH - 2 - $text_len) / 2)")
+        set right_len (math --scale=0 "$BOX_WIDTH - 2 - $text_len - $space_len")
+        printf "$cyan ║%*s$reset%s$cyan%*s║$reset\n" $space_len "" "$text" $right_len ""
     end
     
     function draw_line
@@ -48,9 +49,8 @@ function draw_banner
     draw_line "╔" "╗"
     print_center ""
     
-    # Custom banner name (PROC replaced with user's custom name)
     echo -e "\033[1;32m╔════════════════════════════════════════════════════╗\033[0m"
-    echo -e "\033[1;36m║\033[0m         \033[1;35mPROC\033[0m                                  \033[1;36m║\033[0m"
+╔    print_center "PROC"
     echo -e "\033[1;32m╚════════════════════════════════════════════════════╝\033[0m"
     
     print_center ""
