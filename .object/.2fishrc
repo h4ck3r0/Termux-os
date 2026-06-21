@@ -50,10 +50,13 @@ end
 
 draw_banner
 
+functions --erase ls
+functions --erase cat
+functions --erase ll
 alias l='exa -la'
-alias ls='exa -la'
+alias ls='command ls'
+alias cat='command cat'
 alias ll='exa -l'
-alias cat='bat'
 
 function fish_prompt
     echo
