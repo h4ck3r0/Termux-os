@@ -7,6 +7,9 @@ C='\033[1;96m'
 W='\033[1;97m'
 RS='\033[0m'
 
+# Detect repo directory regardless of folder name (Termux-os / termux-os / etc)
+REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
+
 term_width=$(tput cols)
 BOX_WIDTH=$(( term_width > 60 ? 58 : term_width - 2 ))
 margin=$(( (term_width - BOX_WIDTH) / 2 ))
@@ -56,19 +59,19 @@ banner() {
 
 banner
 
-do_full_setup()  { apt update && apt upgrade -y; pkg install zsh fish git figlet toilet ruby wget curl bat eza -y; gem install lolcat; clear; cd ~/Termux-os/.object/ && cp -r 'ANSI Shadow.flf' $PREFIX/share/figlet/ASCII-Shadow.flf; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; mkdir -p ~/.config/fish; pkg install toilet figlet eza -y; cd ~/Termux-os/.object; rm -rf ~/.termux/colors.properties; rm -rf /data/data/com.termux/files/usr/etc/motd; cp -r .colors.properties ~/.termux/colors.properties; cp -r .termux.properties ~/.termux.properties; curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf > ~/.termux/font.ttf; cp -r .1fishrc ~/.config/fish/config.fish; clear; termux-open-url h4ck3r.me; termux-reload-settings; cd ~/Termux-os ; bash os.sh; }
-do_zsh_setup()   { rm -rf ~/.zshrc; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc; cd ~/Termux-os ; bash os.sh; }
-do_zsh_switch()  { pkg install zsh; chsh -s zsh; cd ~/Termux-os ; bash os.sh; }
-do_bash_switch() { chsh -s bash; cd ~/Termux-os ; bash os.sh; }
-do_zsh_banner()  { rm -rf ~/.zshrc; cd ~/Termux-os/.object; bash .2.sh; clear ; cd ~/Termux-os ; bash os.sh; }
-do_zsh_theme()   { cd ~/Termux-os/.object; bash .1.sh; clear ; cd ~/Termux-os ; bash os.sh; }
-do_zsh_plugins() { cd ~/Termux-os/.object; rm -rf ~/.zshrc; chsh -s zsh; bash .3.sh; clear ; cd ~/Termux-os ; bash os.sh; }
-do_fish_setup()  { pkg install fish; mkdir -p ~/.config/fish; cp ~/.config/fish/config.fish ~/.config/fish/config.fish.bak 2>/dev/null || true; cp ~/Termux-os/.object/.1fishrc ~/.config/fish/config.fish; cd ~/Termux-os ; bash os.sh; }
-do_fish_switch() { pkg install fish; chsh -s fish; mkdir -p ~/.config/fish; cp ~/Termux-os/.object/.1fishrc ~/.config/fish/config.fish; cd ~/Termux-os ; bash os.sh; }
-do_fish_banner() { mkdir -p ~/.config/fish; cd ~/Termux-os/.object; bash .1fish.sh; clear ; cd ~/Termux-os ; bash os.sh; }
-do_fish_theme()  { mkdir -p ~/.config/fish; cd ~/Termux-os/.object; bash .2fish.sh; clear ; cd ~/Termux-os ; bash os.sh; }
-do_fish_full()   { mkdir -p ~/.config/fish; cd ~/Termux-os/.object; bash .3fish.sh; clear ; cd ~/Termux-os ; bash os.sh; }
-do_update()      { rm -rf ~/Termux-os; cd; git clone https://github.com/h4ck3r0/Termux-os; cd ~/Termux-os ; bash os.sh; }
+do_full_setup()  { apt update && apt upgrade -y; pkg install zsh fish git figlet toilet ruby wget curl bat eza -y; gem install lolcat; clear; cd "$REPO_DIR"/.object/ && cp -r 'ANSI Shadow.flf' $PREFIX/share/figlet/ASCII-Shadow.flf; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; mkdir -p ~/.config/fish; pkg install toilet figlet eza -y; cd "$REPO_DIR"/.object; rm -rf ~/.termux/colors.properties; rm -rf /data/data/com.termux/files/usr/etc/motd; cp -r .colors.properties ~/.termux/colors.properties; cp -r .termux.properties ~/.termux.properties; curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf > ~/.termux/font.ttf; cp -r .1fishrc ~/.config/fish/config.fish; clear; termux-open-url h4ck3r.me; termux-reload-settings; cd "$REPO_DIR" ; bash os.sh; }
+do_zsh_setup()   { rm -rf ~/.zshrc; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc; cd "$REPO_DIR" ; bash os.sh; }
+do_zsh_switch()  { pkg install zsh; chsh -s zsh; cd "$REPO_DIR" ; bash os.sh; }
+do_bash_switch() { chsh -s bash; cd "$REPO_DIR" ; bash os.sh; }
+do_zsh_banner()  { rm -rf ~/.zshrc; cd "$REPO_DIR"/.object; bash .2.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
+do_zsh_theme()   { cd "$REPO_DIR"/.object; bash .1.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
+do_zsh_plugins() { cd "$REPO_DIR"/.object; rm -rf ~/.zshrc; chsh -s zsh; bash .3.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
+do_fish_setup()  { pkg install fish; mkdir -p ~/.config/fish; cp ~/.config/fish/config.fish ~/.config/fish/config.fish.bak 2>/dev/null || true; cp "$REPO_DIR"/.object/.1fishrc ~/.config/fish/config.fish; cd "$REPO_DIR" ; bash os.sh; }
+do_fish_switch() { pkg install fish; chsh -s fish; mkdir -p ~/.config/fish; cp "$REPO_DIR"/.object/.1fishrc ~/.config/fish/config.fish; cd "$REPO_DIR" ; bash os.sh; }
+do_fish_banner() { mkdir -p ~/.config/fish; cd "$REPO_DIR"/.object; bash .1fish.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
+do_fish_theme()  { mkdir -p ~/.config/fish; cd "$REPO_DIR"/.object; bash .2fish.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
+do_fish_full()   { mkdir -p ~/.config/fish; cd "$REPO_DIR"/.object; bash .3fish.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
+do_update()      { cd "$REPO_DIR"; git pull; bash os.sh; }
 do_add_lock() {
     echo -e "\n${C}Initialising Security Protocol...${RS}"
     echo -ne "${Y}Create Access Key: ${RS}"
