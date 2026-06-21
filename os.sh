@@ -68,9 +68,9 @@ do_zsh_theme()   { cd "$REPO_DIR"/.object; bash .1.sh; clear ; cd "$REPO_DIR" ; 
 do_zsh_plugins() { cd "$REPO_DIR"/.object; rm -rf ~/.zshrc; chsh -s zsh; bash .3.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
 do_fish_setup()  { pkg install fish; mkdir -p ~/.config/fish; cp ~/.config/fish/config.fish ~/.config/fish/config.fish.bak 2>/dev/null || true; cp "$REPO_DIR"/.object/.1fishrc ~/.config/fish/config.fish; cd "$REPO_DIR" ; bash os.sh; }
 do_fish_switch() { pkg install fish; chsh -s fish; mkdir -p ~/.config/fish; cp "$REPO_DIR"/.object/.1fishrc ~/.config/fish/config.fish; cd "$REPO_DIR" ; bash os.sh; }
-do_fish_banner() { mkdir -p ~/.config/fish; cd "$REPO_DIR"/.object; bash .1fish.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
-do_fish_theme()  { mkdir -p ~/.config/fish; cd "$REPO_DIR"/.object; bash .2fish.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
-do_fish_full()   { mkdir -p ~/.config/fish; cd "$REPO_DIR"/.object; bash .3fish.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
+do_fish_banner() { chsh -s fish; mkdir -p ~/.config/fish; cd "$REPO_DIR"/.object; bash .1fish.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
+do_fish_theme()  { chsh -s fish; mkdir -p ~/.config/fish; cd "$REPO_DIR"/.object; bash .2fish.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
+do_fish_full()   { chsh -s fish; mkdir -p ~/.config/fish; cd "$REPO_DIR"/.object; bash .3fish.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
 do_update()      { cd "$REPO_DIR"; git pull; bash os.sh; }
 do_add_lock() {
     echo -e "\n${C}Initialising Security Protocol...${RS}"
