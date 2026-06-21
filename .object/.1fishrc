@@ -7,10 +7,10 @@ set -gx CLICOLOR_FORCE 1
 functions --erase ls
 functions --erase cat
 functions --erase ll
-alias l='exa -la'
+alias l='eza -la'
 alias ls='command ls'
 alias cat='command cat'
-alias ll='exa -l'
+alias ll='eza -l'
 
 function fish_prompt
     echo
