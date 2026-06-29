@@ -59,7 +59,7 @@ banner() {
 
 banner
 
-do_full_setup()  { apt update && apt upgrade -y; pkg install zsh fish git figlet toilet ruby wget curl bat eza -y; gem install lolcat; clear; cd "$REPO_DIR"/.object/ && cp -r 'ANSI Shadow.flf' $PREFIX/share/figlet/ASCII-Shadow.flf; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; mkdir -p ~/.config/fish; pkg install toilet figlet eza -y; cd "$REPO_DIR"/.object; rm -rf ~/.termux/colors.properties; rm -rf /data/data/com.termux/files/usr/etc/motd; cp -r .colors.properties ~/.termux/colors.properties; cp -r .termux.properties ~/.termux.properties; curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf > ~/.termux/font.ttf; cp -r .1fishrc ~/.config/fish/config.fish; clear; termux-open-url h4ck3r.me; termux-reload-settings; cd "$REPO_DIR" ; bash os.sh; }
+do_full_setup()  { apt update && apt upgrade -y; pkg install zsh fish git figlet toilet ruby wget curl bat eza -y; gem install lolcat; clear; cd "$REPO_DIR"/.object/ && cp -r 'ANSI Shadow.flf' $PREFIX/share/figlet/ASCII-Shadow.flf; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; mkdir -p ~/.config/fish; pkg install toilet figlet eza -y; cd "$REPO_DIR"/.object; rm -rf ~/.termux/colors.properties; rm -rf "$PREFIX"/etc/motd; cp -r .colors.properties ~/.termux/colors.properties; cp -r .termux.properties ~/.termux.properties; curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf > ~/.termux/font.ttf; cp -r .1fishrc ~/.config/fish/config.fish; clear; termux-open-url h4ck3r.me; termux-reload-settings; cd "$REPO_DIR" ; bash os.sh; }
 do_zsh_setup()   { rm -rf ~/.zshrc; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc; cd "$REPO_DIR" ; bash os.sh; }
 do_zsh_switch()  { pkg install zsh; chsh -s zsh; cd "$REPO_DIR" ; bash os.sh; }
 do_bash_switch() { chsh -s bash; cd "$REPO_DIR" ; bash os.sh; }
@@ -78,6 +78,9 @@ do_add_lock() {
     read -s new_pass
     echo
     
+    # Hash the new password
+    new_pass_hash=$(echo -n "$new_pass" | sha256sum | cut -d' ' -f1)
+    
     # Lock code for Bash/Zsh
     lock_code="#LOCK_START
 clear
@@ -95,7 +98,8 @@ while [ \$attempt -le 3 ]; do
     echo -ne \"${Y} [Attempt \$attempt/3] Enter Key: ${RS}\"
     read -s pass_input
     echo
-    if [ \"\$pass_input\" = \"$new_pass\" ]; then
+    entered_hash=\$(echo -n \"\$pass_input\" | sha256sum | cut -d' ' -f1)
+    if [ \"\$entered_hash\" = \"$new_pass_hash\" ]; then
         echo -e \"${G} ACCESS GRANTED.${RS}\"
         sleep 1
         clear
@@ -126,7 +130,8 @@ while test \$attempt -le 3
     echo -e \"╚══════════════════════════════════════╝${RS}\"
     read -s -p \"${Y} [Attempt \$attempt/3] Enter Key: ${RS}\" pass_input
     echo
-    if test \"\$pass_input\" = \"$new_pass\"
+    set entered_hash (echo -n \"\$pass_input\" | sha256sum | cut -d' ' -f1)
+    if test \"\$entered_hash\" = \"$new_pass_hash\"
         echo -e \"${G} ACCESS GRANTED.${RS}\"
         sleep 1
         clear

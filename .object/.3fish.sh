@@ -3,7 +3,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 git clone https://github.com/oh-my-fish/oh-my-fish.git ~/.local/share/omf --depth=1 2>/dev/null || true
 
 clear
-PUT(){ echo -en "\033[${1};${2}H";}
+PUT() { printf "\033[%d;%dH" "$1" "$2"; }
 clear;toilet -t -f mono12  "H4Ck3R" --gay -F border
 echo ""
 PUT 11 40

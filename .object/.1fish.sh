@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PUT(){ echo -en "\033[${1};${2}H";}
+PUT() { printf "\033[%d;%dH" "$1" "$2"; }
 clear;toilet -t -f mono12  "H4Ck3R" --gay -F border 
 echo ""
 PUT 11 40

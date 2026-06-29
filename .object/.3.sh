@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-git clone https://github.com/zsh-users/zsh-autosuggestions /data/data/com.termux/files/home/.oh-my-zsh/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /data/data/com.termux/files/home/.oh-my-zsh/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME"/.oh-my-zsh/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME"/.oh-my-zsh/plugins/zsh-syntax-highlighting
 
 clear
-PUT(){ echo -en "\033[${1};${2}H";}
+PUT() { printf "\033[%d;%dH" "$1" "$2"; }
 clear;toilet -t -f mono12  "H4Ck3R" --gay -F border
 echo ""
 PUT 11 40
