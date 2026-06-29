@@ -34,8 +34,10 @@
 It focuses on improving usability and appearance while keeping setup simple and automated.
 
 **Highlights**
-- **NEW:** Cyber Lock System (Bash/Zsh/fish)
-- Zsh and Fish shell support
+- **NEW:** Curated Termux color schemes (Dracula, Nord, Monokai, Solarized Dark, and Default)
+- **NEW:** Bash Shell customization (Syntax Highlighting & Auto-suggestions powered by `ble.sh` Line Editor)
+- **NEW:** Secure Cyber Lock (compares SHA-256 hashes instead of plaintext keys in rc files)
+- Zsh, Fish, and Bash shell support
 - Clean and minimal Termux look
 - One-click configuration
 
@@ -44,7 +46,7 @@ It focuses on improving usability and appearance while keeping setup simple and 
 ## Features
 
 ### 🔒 Cyber Lock System (Security)
-Secure your terminal with a login gate. If the password is failed 3 times, the session auto-closes. Easily install or remove from the menu.
+Secure your terminal with a login gate. If the password is failed 3 times, the session auto-closes. Easily install or remove from the menu. Access keys are securely hashed using SHA-256 for protection instead of plaintext.
 <p align="center">
   <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQpAEhEZoOyNzsfpBAC8BMjJfc-8XRzVWYGY8GzE2-y9gvl4ylhPIrqC9cYhkV2dCXoEAZBSEUF00LEiGQIvJUAA_Kj849C8A6ONdUuciYYduEzjyZfruoYVsRF4P[...]
 </p>
@@ -60,15 +62,24 @@ Secure your terminal with a login gate. If the password is failed 3 times, the s
   <img src="https://user-images.githubusercontent.com/46929618/150729923-9f0415aa-d0fd-46c7-86cb-1ef65affffcb.jpg" width="300">
 </p>
 
-### Custom Zsh & Fish Themes
+### Custom Zsh, Fish, and Bash Themes
 <p align="center">
   <img src="https://user-images.githubusercontent.com/46929618/150729435-7eea5d74-8474-427a-9ada-a8d50da91136.jpg" width="300">
 </p>
 
-### Syntax Highlighting & Autosuggestions
+### Syntax Highlighting & Autosuggestions (Zsh, Fish, & Bash)
+Fully supported across Zsh (plugins), Fish (native), and Bash (powered by `ble.sh`).
 <p align="center">
   <img src="https://user-images.githubusercontent.com/46929618/150729854-a09be75c-5e3a-4a21-85b4-71191ee42bd2.jpg" width="300">
 </p>
+
+### 🎨 Curated Termux Color Themes
+Select and dynamically apply any of the 5 curated properties color themes:
+- **Default (Gunmetal Neon)**
+- **Dracula**
+- **Nord**
+- **Monokai**
+- **Solarized Dark**
 
 ---
 
