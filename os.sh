@@ -59,10 +59,11 @@ banner() {
 
 banner
 
-do_full_setup()  { apt update && apt upgrade -y; pkg install zsh fish git figlet toilet ruby wget curl bat eza -y; gem install lolcat; clear; cd "$REPO_DIR"/.object/ && cp -r 'ANSI Shadow.flf' $PREFIX/share/figlet/ASCII-Shadow.flf; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; mkdir -p ~/.config/fish; pkg install toilet figlet eza -y; cd "$REPO_DIR"/.object; rm -rf ~/.termux/colors.properties; rm -rf "$PREFIX"/etc/motd; cp -r .colors.properties ~/.termux/colors.properties; cp -r .termux.properties ~/.termux.properties; curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf > ~/.termux/font.ttf; cp -r .1fishrc ~/.config/fish/config.fish; clear; termux-open-url h4ck3r.me; termux-reload-settings; cd "$REPO_DIR" ; bash os.sh; }
+do_full_setup()  { apt update && apt upgrade -y; pkg install zsh fish git figlet toilet ruby wget curl bat eza xz-utils -y; gem install lolcat; clear; cd "$REPO_DIR"/.object/ && cp -r 'ANSI Shadow.flf' $PREFIX/share/figlet/ASCII-Shadow.flf; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; mkdir -p ~/.config/fish; pkg install toilet figlet eza -y; cd "$REPO_DIR"/.object; rm -rf ~/.termux/colors.properties; rm -rf "$PREFIX"/etc/motd; cp -r .colors.properties ~/.termux/colors.properties; cp -r .termux.properties ~/.termux.properties; curl -L https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/FiraCodeNerdFont-Regular.ttf > ~/.termux/font.ttf; cp -r .1fishrc ~/.config/fish/config.fish; clear; termux-open-url h4ck3r.me; termux-reload-settings; cd "$REPO_DIR" ; bash os.sh; }
 do_zsh_setup()   { rm -rf ~/.zshrc; git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh; cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc; cd "$REPO_DIR" ; bash os.sh; }
 do_zsh_switch()  { pkg install zsh; chsh -s zsh; cd "$REPO_DIR" ; bash os.sh; }
 do_bash_switch() { chsh -s bash; cd "$REPO_DIR" ; bash os.sh; }
+do_bash_setup()  { cd "$REPO_DIR"/.object; bash .1bash.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
 do_zsh_banner()  { rm -rf ~/.zshrc; cd "$REPO_DIR"/.object; bash .2.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
 do_zsh_theme()   { cd "$REPO_DIR"/.object; bash .1.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
 do_zsh_plugins() { cd "$REPO_DIR"/.object; rm -rf ~/.zshrc; chsh -s zsh; bash .3.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
@@ -225,12 +226,14 @@ zsh_menu() {
 bash_menu() {
     banner
     printf "\n${left_pad}${C}[${W}01${C}]${G} Switch to Bash Shell"
+    printf "\n${left_pad}${C}[${W}02${C}]${Y} Customize Bash Prompt + Plugins"
     printf "\n${left_pad}${C}[${W}00${C}]${R} Back to Main Menu\n\n"
     
     echo -ne "${left_pad}${C}Selection: ${RS}"
     read a
     case $a in
         1|01) do_bash_switch ;;
+        2|02) do_bash_setup ;;
         0|00) menu ;;
         *) bash_menu ;;
     esac

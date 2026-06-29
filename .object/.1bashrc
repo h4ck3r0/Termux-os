@@ -1,0 +1,85 @@
+# Sourcing ble.sh for syntax highlighting and auto-suggestions
+[[ -f ~/.local/share/blesh/ble.sh ]] && source ~/.local/share/blesh/ble.sh
+
+# User-defined prompt and design
+clear
+echo -e "\033[1;32m[*] BOOTING TERMUX-OS v3..."
+echo -ne "\033[1;36m[LOADING MODULES] \033[1;32m"
+for i in {1..25}; do
+    echo -ne "█"
+    sleep 0.02
+done
+echo -e "\033[0m"
+sleep 0.4
+clear
+
+draw_banner() {
+    local BOX_WIDTH=56
+    local cyan='\033[0;36m'
+    local reset='\033[0m'
+    
+    print_center() {
+        local text="$1"
+        local len=${#text}
+        local space_len=$(( (BOX_WIDTH - 2 - len) / 2 ))
+        printf "${cyan} ║%*s${reset}%s${cyan}%*s║${reset}\n" $space_len "" "$text" $(( BOX_WIDTH - 2 - len - space_len )) ""
+    }
+
+    draw_line() {
+        local char=$1
+        local end=$2
+        printf "${cyan} %s" "$char"
+        for ((i=0; i<BOX_WIDTH-2; i++)); do printf "═"; done
+        printf "%s${reset}\n" "$end"
+    }
+
+    draw_line "╔" "╗"
+    print_center ""
+    
+    # FIGLET CENTERED WITHIN BOX WIDTH
+    figlet -c -f ASCII-Shadow -w $BOX_WIDTH "PROC" 2>/dev/null | lolcat 2>/dev/null || printf "  PROC\n"
+    
+    print_center ""
+    print_center "SYSTEM: ONLINE  |  USER: H4ck3r"
+    print_center "OS : Termux-OS v3 (Bash Shell)"
+    print_center "SECURE CONNECTION ESTABLISHED"
+    print_center ""
+    draw_line "╚" "╝"
+}
+
+draw_banner
+
+# Prompt customization
+set_bash_prompt() {
+    local EXIT="$?"
+    local RED="\[\033[1;31m\]"
+    local GREEN="\[\033[1;32m\]"
+    local WHITE="\[\033[1;37m\]"
+    local CYAN="\[\033[1;36m\]"
+    local RESET="\[\033[0m\]"
+    
+    local git_info=""
+    if git rev-parse --is-inside-work-tree &>/dev/null; then
+        local branch
+        branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+        if [[ -n $(git status --porcelain 2>/dev/null) ]]; then
+            git_info=" \[\033[1;31m\](${branch}*)${RESET}"
+        else
+            git_info=" \[\033[1;32m\](${branch})${RESET}"
+        fi
+    fi
+    
+    local arrow="${GREEN}❯❯❯"
+    if [ "$EXIT" -ne 0 ]; then
+        arrow="${RED}❯❯❯"
+    fi
+    
+    PS1="\n${RED}┌─[${GREEN}H4ck3r${RED}@${WHITE}termux${RED}]─[${CYAN}\w${RED}]${git_info}\n${RED}└─╼ ${arrow} ${RESET}"
+}
+PROMPT_COMMAND=set_bash_prompt
+
+# Aliases
+alias l='eza -la'
+alias ls='command ls'
+alias cat='command cat'
+alias ll='eza -l'
