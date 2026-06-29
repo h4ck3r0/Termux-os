@@ -183,6 +183,7 @@ menu() {
     printf "\n${left_pad}${C}[${W}03${C}]${G} Fish Options"
     printf "\n${left_pad}${C}[${W}04${C}]${G} Bash Options"
     printf "\n${left_pad}${C}[${W}05${C}]${B} Security & Updates"
+    printf "\n${left_pad}${C}[${W}06${C}]${Y} Termux Color Themes"
     printf "\n${left_pad}${C}[${W}00${C}]${R} Exit Terminal\n\n"
     
     echo -ne "${left_pad}${C}Selection: ${RS}"
@@ -193,6 +194,7 @@ menu() {
         3|03) fish_menu ;;
         4|04) bash_menu ;;
         5|05) system_menu ;;
+        6|06) color_theme_menu ;;
         0|00) exit ;;
         *) menu ;;
     esac
@@ -272,5 +274,45 @@ system_menu() {
         0|00) menu ;;
         *) system_menu ;;
     esac
+}
+
+color_theme_menu() {
+    banner
+    printf "\n${left_pad}${C}[${W}01${C}]${G} Default (Gunmetal)"
+    printf "\n${left_pad}${C}[${W}02${C}]${G} Dracula Theme"
+    printf "\n${left_pad}${C}[${W}03${C}]${G} Nord Theme"
+    printf "\n${left_pad}${C}[${W}04${C}]${G} Monokai Theme"
+    printf "\n${left_pad}${C}[${W}05${C}]${G} Solarized Dark Theme"
+    printf "\n${left_pad}${C}[${W}00${C}]${R} Back to Main Menu\n\n"
+    
+    echo -ne "${left_pad}${C}Selection: ${RS}"
+    read a
+    case $a in
+        1|01) do_set_theme "default" ;;
+        2|02) do_set_theme "dracula" ;;
+        3|03) do_set_theme "nord" ;;
+        4|04) do_set_theme "monokai" ;;
+        5|05) do_set_theme "solarized" ;;
+        0|00) menu ;;
+        *) color_theme_menu ;;
+    esac
+}
+
+do_set_theme() {
+    local theme=$1
+    local theme_file="$REPO_DIR"/.object/.colors_"${theme}".properties
+    if [ -f "$theme_file" ]; then
+        mkdir -p ~/.termux
+        rm -f ~/.termux/colors.properties
+        cp "$theme_file" ~/.termux/colors.properties
+        if command -v termux-reload-settings &>/dev/null; then
+            termux-reload-settings
+        fi
+        echo -e "${G}Applied ${theme} theme successfully!${RS}"
+    else
+        echo -e "${R}Theme file not found: ${theme_file}${RS}"
+    fi
+    sleep 2
+    color_theme_menu
 }
 menu
