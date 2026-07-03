@@ -246,6 +246,35 @@ apply_shell_customizations() {
     
     ensure_dependencies
     
+    local figlet_dir=""
+    if [ -n "$PREFIX" ]; then
+        figlet_dir="$PREFIX/share/figlet"
+    else
+        figlet_dir="$HOME/.local/share/figlet"
+    fi
+    mkdir -p "$figlet_dir"
+
+    # Copy bundled ASCII-Shadow font if it exists
+    if [ -f "$REPO_DIR/.object/ANSI Shadow.flf" ]; then
+        cp "$REPO_DIR/.object/ANSI Shadow.flf" "$figlet_dir/ASCII-Shadow.flf"
+    fi
+
+    # Ensure other selected standard fonts are downloaded if selected and missing
+    if [ "$fig_font" != "ASCII-Shadow" ]; then
+        if [ ! -f "$figlet_dir/$fig_font.flf" ]; then
+            echo -e "${Y}[*] Downloading figlet font: $fig_font...${RS}"
+            curl -s -L "https://raw.githubusercontent.com/patorjk/figlet.js/master/fonts/$fig_font.flf" -o "$figlet_dir/$fig_font.flf"
+            # Fallback if download failed
+            if [ ! -f "$figlet_dir/$fig_font.flf" ] || [ ! -s "$figlet_dir/$fig_font.flf" ]; then
+                echo -e "${R}[!] Failed to download $fig_font.flf, using Standard.${RS}"
+                fig_font="Standard"
+                if [ ! -f "$figlet_dir/Standard.flf" ]; then
+                    curl -s -L "https://raw.githubusercontent.com/patorjk/figlet.js/master/fonts/Standard.flf" -o "$figlet_dir/Standard.flf"
+                fi
+            fi
+        fi
+    fi
+
     local banner_script="$HOME/.termux-os-banner.sh"
     cat << 'EOF' > "$banner_script"
 #!/bin/bash
@@ -260,7 +289,11 @@ clear
 BOX_WIDTH=56
 cyan='\033[0;36m'
 reset='\033[0m'
+EOF
 
+    echo "FIGLET_DIR=\"$figlet_dir\"" >> "$banner_script"
+
+    cat << 'EOF' >> "$banner_script"
 print_center() { local text="$1"; local len=${#text}; local space_len=$(( (BOX_WIDTH - 2 - len) / 2 )); printf "${cyan} ║%*s${reset}%s${cyan}%*s║${reset}\n" $space_len "" "$text" $(( BOX_WIDTH - 2 - len - space_len )) ""; }
 draw_line() { local char=$1; local end=$2; printf "${cyan} %s" "$char"; for ((i=0; i<BOX_WIDTH-2; i++)); do printf "═"; done; printf "%s${reset}\n" "$end"; }
 
@@ -272,18 +305,18 @@ EOF
         if command -v gem &>/dev/null && ! command -v lolcat &>/dev/null; then
             gem install lolcat -y 2>/dev/null || gem install lolcat
         fi
-        echo "figlet -c -f '$fig_font' -w \$BOX_WIDTH '$banner_text' 2>/dev/null | lolcat 2>/dev/null || printf '  $banner_text\\n'" >> "$banner_script"
+        echo "figlet -d \"\$FIGLET_DIR\" -c -f '$fig_font' -w \$BOX_WIDTH '$banner_text' 2>/dev/null | lolcat 2>/dev/null || printf '  $banner_text\\n'" >> "$banner_script"
     elif [ "$color_style" = "matrix" ]; then
         echo "echo -e '\\033[1;32m'" >> "$banner_script"
-        echo "figlet -c -f '$fig_font' -w \$BOX_WIDTH '$banner_text' 2>/dev/null || printf '  $banner_text\\n'" >> "$banner_script"
+        echo "figlet -d \"\$FIGLET_DIR\" -c -f '$fig_font' -w \$BOX_WIDTH '$banner_text' 2>/dev/null || printf '  $banner_text\\n'" >> "$banner_script"
         echo "echo -e '\\033[0m'" >> "$banner_script"
     elif [ "$color_style" = "cyber" ]; then
         echo "echo -e '\\033[1;36m'" >> "$banner_script"
-        echo "figlet -c -f '$fig_font' -w \$BOX_WIDTH '$banner_text' 2>/dev/null || printf '  $banner_text\\n'" >> "$banner_script"
+        echo "figlet -d \"\$FIGLET_DIR\" -c -f '$fig_font' -w \$BOX_WIDTH '$banner_text' 2>/dev/null || printf '  $banner_text\\n'" >> "$banner_script"
         echo "echo -e '\\033[0m'" >> "$banner_script"
     else
         echo "echo -e '\\033[1;37m'" >> "$banner_script"
-        echo "figlet -c -f '$fig_font' -w \$BOX_WIDTH '$banner_text' 2>/dev/null || printf '  $banner_text\\n'" >> "$banner_script"
+        echo "figlet -d \"\$FIGLET_DIR\" -c -f '$fig_font' -w \$BOX_WIDTH '$banner_text' 2>/dev/null || printf '  $banner_text\\n'" >> "$banner_script"
         echo "echo -e '\\033[0m'" >> "$banner_script"
     fi
     
@@ -304,7 +337,6 @@ draw_line '╚' '╝'
 EOF
 
     chmod +x "$banner_script"
-
     if [ -f "$REPO_DIR/.object/ANSI Shadow.flf" ]; then
         mkdir -p "$PREFIX/share/figlet"
         cp "$REPO_DIR/.object/ANSI Shadow.flf" "$PREFIX/share/figlet/ASCII-Shadow.flf"
@@ -567,6 +599,25 @@ EOF
         sed -i "s/__SYMBOL__/$prompt_sym/g" ~/.config/fish/config.fish
     fi
     
+    # Auto-switch shell to the chosen one
+    local current_shell_name=$(basename "$SHELL")
+    if [ "$current_shell_name" != "$shell" ]; then
+        echo -e "${Y}[*] Auto-switching default shell to ${shell}...${RS}"
+        if [ -d /data/data/com.termux ] || [ -n "$TERMUX_VERSION" ]; then
+            # We are on Termux, chsh is passwordless
+            if command -v "$shell" &>/dev/null; then
+                chsh -s "$shell" &>/dev/null
+            fi
+        else
+            # We are on standard Linux, chsh might require password
+            if command -v "$shell" &>/dev/null; then
+                local shell_path=$(command -v "$shell")
+                echo -e "${Y}[!] You may be prompted for your password to change the default shell.${RS}"
+                chsh -s "$shell_path"
+            fi
+        fi
+    fi
+
     echo -e "${G}[√] ${shell} prompt & welcome banner set up successfully!${RS}"
     sleep 2
     case $shell in
@@ -879,7 +930,8 @@ while test \$attempt -le 3
     echo -e \"\n${C}╔══════════════════════════════════════╗\"
     echo -e \"║        ${R}SECURE SHELL ACCESS           ${C}║\"
     echo -e \"╚══════════════════════════════════════╝${RS}\"
-    read -s -p \"${Y} [Attempt \$attempt/3] Enter Key: ${RS}\" pass_input
+    printf \"${Y} [Attempt \$attempt/3] Enter Key: ${RS}\"
+    read -s pass_input
     echo
     set entered_hash (echo -n \"\$pass_input\" | sha256sum | cut -d' ' -f1)
     if test \"\$entered_hash\" = \"$new_pass_hash\"
@@ -996,6 +1048,14 @@ check_for_updates() {
 
         if [[ "$auto_update" =~ ^[yY]$ ]]; then
             git -C "$DIR" pull origin "$branch"
+            if [ $? -eq 0 ]; then
+                echo -e "${G}[√] Update completed successfully! Reloading script...${RS}"
+                sleep 2
+                exec bash "$DIR/os.sh"
+            else
+                echo -e "${R}[!] Update failed. Please check network/git.${RS}"
+                sleep 2
+            fi
         fi
         return
     fi
