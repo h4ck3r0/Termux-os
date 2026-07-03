@@ -7,7 +7,7 @@ C='\033[1;96m'
 W='\033[1;97m'
 RS='\033[0m'
 
-# Detect repo directory regardless of folder name (Termux-os / termux-os / etc)
+
 REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 term_width=$(tput cols)
@@ -72,7 +72,59 @@ do_fish_switch() { pkg install fish; chsh -s fish; mkdir -p ~/.config/fish; cp "
 do_fish_banner() { chsh -s fish; mkdir -p ~/.config/fish; cd "$REPO_DIR"/.object; bash .1fish.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
 do_fish_theme()  { chsh -s fish; mkdir -p ~/.config/fish; cd "$REPO_DIR"/.object; bash .2fish.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
 do_fish_full()   { chsh -s fish; mkdir -p ~/.config/fish; cd "$REPO_DIR"/.object; bash .3fish.sh; clear ; cd "$REPO_DIR" ; bash os.sh; }
-do_update()      { cd "$REPO_DIR"; git pull; bash os.sh; }
+check_for_updates() {
+    local DIR="$REPO_DIR"
+    local branch
+    local FETCH_STATUS
+    local LOCAL_COMMIT
+    local REMOTE_COMMIT
+
+    [ ! -d "$DIR/.git" ] && return
+
+    branch=$(git -C "$DIR" branch --show-current)
+
+    echo -ne "${Y}[...]${RS} Checking for updates..."
+
+    if command -v timeout >/dev/null 2>&1; then
+        timeout 3 git -C "$DIR" fetch origin "$branch" >/dev/null 2>&1
+        FETCH_STATUS=$?
+    else
+        git -C "$DIR" fetch origin "$branch" >/dev/null 2>&1
+        FETCH_STATUS=$?
+    fi
+
+    if [ $FETCH_STATUS -ne 0 ]; then
+        echo -e "\r${Y}[!]${RS} Update check skipped (offline)"
+        sleep 1
+        echo -ne "\r\033[K"
+        return
+    fi
+
+    LOCAL_COMMIT=$(git -C "$DIR" rev-parse HEAD)
+    REMOTE_COMMIT=$(git -C "$DIR" rev-parse "origin/$branch")
+
+    if [ "$LOCAL_COMMIT" != "$REMOTE_COMMIT" ] &&
+       git -C "$DIR" merge-base --is-ancestor "$LOCAL_COMMIT" "$REMOTE_COMMIT"; then
+
+        echo -e "\r${G}[!]${RS} A new version is available!"
+        echo -e "    Local  version: ${Y}${LOCAL_COMMIT:0:7}${RS}"
+        echo -e "    Latest version: ${G}${REMOTE_COMMIT:0:7}${RS}"
+        echo
+
+        echo -ne "${C}[?]${RS} Update now? (y/N): "
+        read -r auto_update
+
+        if [[ "$auto_update" =~ ^[yY]$ ]]; then
+            git -C "$DIR" pull origin "$branch"
+        fi
+
+        return
+    fi
+
+    echo -ne "\r\033[K"
+}
+
+
 do_add_lock() {
     echo -e "\n${C}Initialising Security Protocol...${RS}"
     echo -ne "${Y}Create Access Key: ${RS}"
@@ -318,4 +370,5 @@ do_set_theme() {
     sleep 2
     color_theme_menu
 }
+check_for_updates
 menu
