@@ -594,7 +594,6 @@ do_install_font() {
         font_menu
         return
     fi
-    
     echo -e "${Y}[*] Extracting ${font_name}...${RS}"
     local extract_dir="$HOME/.termux/temp_extract"
     rm -rf "$extract_dir"
@@ -602,24 +601,53 @@ do_install_font() {
     
     unzip -o -q "${temp_zip}" "*.ttf" -d "$extract_dir"
     
-    local font_path=$(find "$extract_dir" -type f -name "*.ttf" | grep -i -E "regular|mono" | grep -v -i -E "italic|bold|light|oblique|propo" | head -n 1)
-    if [ -z "$font_path" ]; then
-        font_path=$(find "$extract_dir" -type f -name "*.ttf" | grep -i "regular" | head -n 1)
-    fi
-    if [ -z "$font_path" ]; then
-        font_path=$(find "$extract_dir" -type f -name "*.ttf" | head -n 1)
+    local font_files=()
+    while IFS= read -r line; do
+        [ -n "$line" ] && font_files+=("$line")
+    done < <(find "$extract_dir" -type f -name "*.ttf" | sort)
+    
+    local num_files=${#font_files[@]}
+    if [ $num_files -eq 0 ]; then
+        echo -e "${R}[!] Could not find any ttf files inside font zip.${RS}"
+        rm -rf "$extract_dir"
+        rm -f "${temp_zip}"
+        sleep 2
+        font_menu
+        return
     fi
     
-    if [ -n "$font_path" ] && [ -f "$font_path" ]; then
-        mv "$font_path" "$HOME/.termux/font.ttf"
+    local chosen_font=""
+    if [ $num_files -eq 1 ]; then
+        chosen_font="${font_files[0]}"
+    else
+        banner
+        printf "\n${left_pad}${C}───[${W} Select Font Variant (${font_name}) ${C}]───\n"
+        local idx=1
+        for f in "${font_files[@]}"; do
+            local name=$(basename "$f")
+            printf "\n${left_pad}${C}[${W}%02d${C}]${G} %s" $idx "$name"
+            idx=$((idx + 1))
+        done
+        printf "\n\n${left_pad}${C}Selection (Default: 1): ${RS}"
+        read variant_sel
+        [ -z "$variant_sel" ] && variant_sel=1
+        
+        if ! [[ "$variant_sel" =~ ^[0-9]+$ ]] || [ "$variant_sel" -lt 1 ] || [ "$variant_sel" -gt $num_files ]; then
+            variant_sel=1
+        fi
+        chosen_font="${font_files[$((variant_sel - 1))]}"
+    fi
+    
+    if [ -n "$chosen_font" ] && [ -f "$chosen_font" ]; then
+        mv "$chosen_font" "$HOME/.termux/font.ttf"
         rm -rf "$extract_dir"
         rm -f "${temp_zip}"
         if command -v termux-reload-settings &>/dev/null; then
             termux-reload-settings
         fi
-        echo -e "${G}[√] ${font_name} installed successfully!${RS}"
+        echo -e "${G}[√] ${font_name} variant installed successfully!${RS}"
     else
-        echo -e "${R}[!] Could not find valid ttf inside font zip.${RS}"
+        echo -e "${R}[!] Selection failed.${RS}"
         rm -rf "$extract_dir"
         rm -f "${temp_zip}"
     fi
