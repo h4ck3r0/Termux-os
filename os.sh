@@ -533,14 +533,17 @@ function fish_prompt
     echo -n (prompt_pwd)
     set_color red
     echo -n "]"
-    if command -v git &>/dev/null; and git rev-parse --is-inside-work-tree &>/dev/null
-        set -l branch (git symbolic-ref --short HEAD 2>/dev/null)
-        if test -n (git status --porcelain 2>/dev/null | string collect)
-            set_color red
-            echo -n " ($branch*)"
-        else
-            set_color green
-            echo -n " ($branch)"
+    if command -v git >/dev/null 2>&1
+        if git rev-parse --is-inside-work-tree >/dev/null 2>&1
+            set -l branch (git symbolic-ref --short HEAD 2>/dev/null)
+            set -l status_count (git status --porcelain 2>/dev/null | count)
+            if test $status_count -gt 0
+                set_color red
+                echo -n " ($branch*)"
+            else
+                set_color green
+                echo -n " ($branch)"
+            end
         end
     end
     echo
@@ -578,10 +581,12 @@ function fish_prompt
     echo -n "__USERNAME__ "
     set_color blue
     echo -n (prompt_pwd)
-    if command -v git &>/dev/null; and git rev-parse --is-inside-work-tree &>/dev/null
-        set -l branch (git symbolic-ref --short HEAD 2>/dev/null)
-        set_color yellow
-        echo -n " git:($branch)"
+    if command -v git >/dev/null 2>&1
+        if git rev-parse --is-inside-work-tree >/dev/null 2>&1
+            set -l branch (git symbolic-ref --short HEAD 2>/dev/null)
+            set_color yellow
+            echo -n " git:($branch)"
+        end
     end
     printf " "
     if test $last_status -eq 0
