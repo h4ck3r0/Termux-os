@@ -108,15 +108,25 @@ do_zsh_setup() {
 
 do_zsh_switch() {
     pkg install zsh -y
-    chsh -s zsh
-    echo -e "${G}[√] Shell switched to Zsh. Restart Termux to see changes.${RS}"
+    local zsh_path=$(command -v zsh)
+    if [ -n "$zsh_path" ]; then
+        chsh -s "$zsh_path"
+        echo -e "${G}[√] Shell switched to Zsh. Restart Termux to see changes.${RS}"
+    else
+        echo -e "${R}[!] Zsh binary not found. Shell not switched.${RS}"
+    fi
     sleep 2
     zsh_menu
 }
 
 do_bash_switch() {
-    chsh -s bash
-    echo -e "${G}[√] Shell switched to Bash. Restart Termux to see changes.${RS}"
+    local bash_path=$(command -v bash)
+    if [ -n "$bash_path" ]; then
+        chsh -s "$bash_path"
+        echo -e "${G}[√] Shell switched to Bash. Restart Termux to see changes.${RS}"
+    else
+        echo -e "${R}[!] Bash binary not found. Shell not switched.${RS}"
+    fi
     sleep 2
     bash_menu
 }
@@ -146,8 +156,13 @@ do_fish_setup() {
 
 do_fish_switch() {
     pkg install fish -y
-    chsh -s fish
-    echo -e "${G}[√] Shell switched to Fish. Restart Termux to see changes.${RS}"
+    local fish_path=$(command -v fish)
+    if [ -n "$fish_path" ]; then
+        chsh -s "$fish_path"
+        echo -e "${G}[√] Shell switched to Fish. Restart Termux to see changes.${RS}"
+    else
+        echo -e "${R}[!] Fish binary not found. Shell not switched.${RS}"
+    fi
     sleep 2
     fish_menu
 }
@@ -605,21 +620,16 @@ EOF
     fi
     
     # Auto-switch shell to the chosen one
-    local current_shell_name=$(basename "$SHELL")
-    if [ "$current_shell_name" != "$shell" ]; then
+    local target_shell_path=$(command -v "$shell")
+    if [ -n "$target_shell_path" ] && [ "$SHELL" != "$target_shell_path" ]; then
         echo -e "${Y}[*] Auto-switching default shell to ${shell}...${RS}"
         if [ -d /data/data/com.termux ] || [ -n "$TERMUX_VERSION" ]; then
             # We are on Termux, chsh is passwordless
-            if command -v "$shell" &>/dev/null; then
-                chsh -s "$shell" &>/dev/null
-            fi
+            chsh -s "$target_shell_path" &>/dev/null
         else
             # We are on standard Linux, chsh might require password
-            if command -v "$shell" &>/dev/null; then
-                local shell_path=$(command -v "$shell")
-                echo -e "${Y}[!] You may be prompted for your password to change the default shell.${RS}"
-                chsh -s "$shell_path"
-            fi
+            echo -e "${Y}[!] You may be prompted for your password to change the default shell.${RS}"
+            chsh -s "$target_shell_path"
         fi
     fi
 
