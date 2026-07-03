@@ -954,8 +954,7 @@ while test \$attempt -le 3
     echo -e \"\n${C}╔══════════════════════════════════════╗\"
     echo -e \"║        ${R}SECURE SHELL ACCESS           ${C}║\"
     echo -e \"╚══════════════════════════════════════╝${RS}\"
-    printf \"${Y} [Attempt \$attempt/3] Enter Key: ${RS}\"
-    read -s pass_input
+    read -P \"${Y} [Attempt \$attempt/3] Enter Key: ${RS}\" -s pass_input
     echo
     set entered_hash (echo -n \"\$pass_input\" | sha256sum | cut -d' ' -f1)
     if test \"\$entered_hash\" = \"$new_pass_hash\"
