@@ -942,33 +942,36 @@ done
 #LOCK_END"
 
     lock_code_fish="#LOCK_START
-clear
-echo -e '\033[1;32m'
-echo '  System check...'
-sleep 0.2
-echo '  Encrypted link established.'
-sleep 0.2
-clear
-set attempt 1
-while test \$attempt -le 3
-    echo -e \"\n${C}╔══════════════════════════════════════╗\"
-    echo -e \"║        ${R}SECURE SHELL ACCESS           ${C}║\"
-    echo -e \"╚══════════════════════════════════════╝${RS}\"
-    read -P \"${Y} [Attempt \$attempt/3] Enter Key: ${RS}\" -s pass_input
-    echo
-    set entered_hash (echo -n \"\$pass_input\" | sha256sum | cut -d' ' -f1)
-    if test \"\$entered_hash\" = \"$new_pass_hash\"
-        echo -e \"${G} ACCESS GRANTED.${RS}\"
-        sleep 1
-        clear
-        break
-    else
-        echo -e \"${R} DENIED.${RS}\"
-        if test \$attempt -eq 3
-            exit
+function prepend_lock --on-event fish_prompt
+    clear
+    echo -e '\033[1;32m'
+    echo '  System check...'
+    sleep 0.2
+    echo '  Encrypted link established.'
+    sleep 0.2
+    clear
+    set attempt 1
+    while test \$attempt -le 3
+        echo -e \"\n${C}╔══════════════════════════════════════╗\"
+        echo -e \"║        ${R}SECURE SHELL ACCESS           ${C}║\"
+        echo -e \"╚══════════════════════════════════════╝${RS}\"
+        read -P \"${Y} [Attempt \$attempt/3] Enter Key: ${RS}\" -s pass_input
+        echo
+        set entered_hash (echo -n \"\$pass_input\" | sha256sum | cut -d' ' -f1)
+        if test \"\$entered_hash\" = \"$new_pass_hash\"
+            echo -e \"${G} ACCESS GRANTED.${RS}\"
+            sleep 1
+            clear
+            break
+        else
+            echo -e \"${R} DENIED.${RS}\"
+            if test \$attempt -eq 3
+                exit
+            end
+            set attempt (math \$attempt + 1)
         end
-        set attempt (math \$attempt + 1)
     end
+    functions -e prepend_lock
 end
 #LOCK_END"
 
