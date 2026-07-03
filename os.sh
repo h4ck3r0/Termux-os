@@ -366,7 +366,9 @@ EOF
     if [ "$shell" = "bash" ]; then
         [ -f ~/.bashrc ] && cp ~/.bashrc ~/.bashrc.bak
         
-        echo "[[ -f ~/.local/share/blesh/ble.sh ]] && source ~/.local/share/blesh/ble.sh" > ~/.bashrc
+        echo "export LANG=C.UTF-8" > ~/.bashrc
+        echo "export LC_ALL=C.UTF-8" >> ~/.bashrc
+        echo "[[ -f ~/.local/share/blesh/ble.sh ]] && source ~/.local/share/blesh/ble.sh" >> ~/.bashrc
         echo "bash $banner_script" >> ~/.bashrc
         
         if [ "$prompt_layout" = "cyberpunk" ]; then
