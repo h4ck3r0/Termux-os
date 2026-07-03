@@ -111,24 +111,28 @@ do_zsh_switch() {
     local zsh_path=$(command -v zsh)
     if [ -n "$zsh_path" ]; then
         chsh -s "$zsh_path"
-        echo -e "${G}[√] Shell switched to Zsh. Restart Termux to see changes.${RS}"
+        echo -e "${G}[√] Shell switched to Zsh. Reloading session...${RS}"
+        sleep 2
+        exec "$zsh_path"
     else
         echo -e "${R}[!] Zsh binary not found. Shell not switched.${RS}"
+        sleep 2
+        zsh_menu
     fi
-    sleep 2
-    zsh_menu
 }
 
 do_bash_switch() {
     local bash_path=$(command -v bash)
     if [ -n "$bash_path" ]; then
         chsh -s "$bash_path"
-        echo -e "${G}[√] Shell switched to Bash. Restart Termux to see changes.${RS}"
+        echo -e "${G}[√] Shell switched to Bash. Reloading session...${RS}"
+        sleep 2
+        exec "$bash_path"
     else
         echo -e "${R}[!] Bash binary not found. Shell not switched.${RS}"
+        sleep 2
+        bash_menu
     fi
-    sleep 2
-    bash_menu
 }
 
 do_bash_setup() {
@@ -159,12 +163,14 @@ do_fish_switch() {
     local fish_path=$(command -v fish)
     if [ -n "$fish_path" ]; then
         chsh -s "$fish_path"
-        echo -e "${G}[√] Shell switched to Fish. Restart Termux to see changes.${RS}"
+        echo -e "${G}[√] Shell switched to Fish. Reloading session...${RS}"
+        sleep 2
+        exec "$fish_path"
     else
         echo -e "${R}[!] Fish binary not found. Shell not switched.${RS}"
+        sleep 2
+        fish_menu
     fi
-    sleep 2
-    fish_menu
 }
 
 # Unified prompts customization configuration
@@ -631,6 +637,9 @@ EOF
             echo -e "${Y}[!] You may be prompted for your password to change the default shell.${RS}"
             chsh -s "$target_shell_path"
         fi
+        echo -e "${G}[√] Shell auto-switched! Reloading session into ${shell} now...${RS}"
+        sleep 2
+        exec "$target_shell_path"
     fi
 
     echo -e "${G}[√] ${shell} prompt & welcome banner set up successfully!${RS}"
