@@ -955,13 +955,18 @@ function prepend_lock --on-event fish_prompt
         echo -e \"\n${C}╔══════════════════════════════════════╗\"
         echo -e \"║        ${R}SECURE SHELL ACCESS           ${C}║\"
         echo -e \"╚══════════════════════════════════════╝${RS}\"
-        read -P \"${Y} [Attempt \$attempt/3] Enter Key: ${RS}\" -s pass_input
+        set_color --bold yellow
+        read -P \" [Attempt \$attempt/3] Enter Key: \" -s pass_input
+        set_color normal
         echo
         set entered_hash (echo -n \"\$pass_input\" | sha256sum | cut -d' ' -f1)
         if test \"\$entered_hash\" = \"$new_pass_hash\"
             echo -e \"${G} ACCESS GRANTED.${RS}\"
             sleep 1
             clear
+            if test -f ~/.termux-os-banner.sh
+                bash ~/.termux-os-banner.sh
+            end
             break
         else
             echo -e \"${R} DENIED.${RS}\"
