@@ -366,10 +366,29 @@ EOF
     if [ "$shell" = "bash" ]; then
         [ -f ~/.bashrc ] && cp ~/.bashrc ~/.bashrc.bak
         
-        echo "export LANG=C.UTF-8" > ~/.bashrc
-        echo "export LC_ALL=C.UTF-8" >> ~/.bashrc
+        echo '[[ ${USER-} ]] || export USER=$(id -un)' > ~/.bashrc
+        echo "export LANG=en_US.UTF-8" >> ~/.bashrc
+        echo "export LC_CTYPE=POSIX" >> ~/.bashrc
         echo "[[ -f ~/.local/share/blesh/ble.sh ]] && source ~/.local/share/blesh/ble.sh" >> ~/.bashrc
         echo "bash $banner_script" >> ~/.bashrc
+
+        local blerc="$HOME/.blerc"
+        if [ ! -f "$blerc" ]; then
+            cat << 'EOF' > "$blerc"
+# Suppress broken locale warnings in Termux safely
+function ble/util/notify-broken-locale {
+  return 0
+}
+EOF
+        elif ! grep -Fq 'ble/util/notify-broken-locale' "$blerc"; then
+            cat << 'EOF' >> "$blerc"
+
+# Suppress broken locale warnings in Termux safely
+function ble/util/notify-broken-locale {
+  return 0
+}
+EOF
+        fi
         
         if [ "$prompt_layout" = "cyberpunk" ]; then
             cat << 'EOF' >> ~/.bashrc
