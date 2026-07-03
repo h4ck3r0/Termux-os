@@ -56,7 +56,7 @@ banner() {
 ensure_dependencies() {
     echo -e "${Y}[*] Checking dependencies...${RS}"
     local missing=()
-    for pkg in zsh fish git figlet toilet ruby wget curl bat eza unzip xz-utils; do
+    for pkg in zsh fish git figlet toilet ruby wget curl bat eza unzip xz-utils ca-certificates; do
         if ! command -v "$pkg" &>/dev/null; then
             missing+=("$pkg")
         fi
@@ -596,14 +596,23 @@ do_install_font() {
     fi
     
     echo -e "${Y}[*] Extracting ${font_name}...${RS}"
-    local font_file=$(unzip -l "${temp_zip}" | grep -o -E "[^ ]+\.ttf" | grep -i -E "regular|mono" | grep -v -i -E "italic|bold|light|oblique" | head -n 1)
-    if [ -z "$font_file" ]; then
-        font_file=$(unzip -l "${temp_zip}" | grep -o -E "[^ ]+\.ttf" | head -n 1)
+    local extract_dir="$HOME/.termux/temp_extract"
+    rm -rf "$extract_dir"
+    mkdir -p "$extract_dir"
+    
+    unzip -o -q "${temp_zip}" "*.ttf" -d "$extract_dir"
+    
+    local font_path=$(find "$extract_dir" -type f -name "*.ttf" | grep -i -E "regular|mono" | grep -v -i -E "italic|bold|light|oblique|propo" | head -n 1)
+    if [ -z "$font_path" ]; then
+        font_path=$(find "$extract_dir" -type f -name "*.ttf" | grep -i "regular" | head -n 1)
+    fi
+    if [ -z "$font_path" ]; then
+        font_path=$(find "$extract_dir" -type f -name "*.ttf" | head -n 1)
     fi
     
-    if [ -n "$font_file" ]; then
-        unzip -o -j "${temp_zip}" "$font_file" -d "$HOME/.termux/"
-        mv "$HOME/.termux/$(basename "$font_file")" "$HOME/.termux/font.ttf"
+    if [ -n "$font_path" ] && [ -f "$font_path" ]; then
+        mv "$font_path" "$HOME/.termux/font.ttf"
+        rm -rf "$extract_dir"
         rm -f "${temp_zip}"
         if command -v termux-reload-settings &>/dev/null; then
             termux-reload-settings
@@ -611,6 +620,7 @@ do_install_font() {
         echo -e "${G}[√] ${font_name} installed successfully!${RS}"
     else
         echo -e "${R}[!] Could not find valid ttf inside font zip.${RS}"
+        rm -rf "$extract_dir"
         rm -f "${temp_zip}"
     fi
     sleep 2
