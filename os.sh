@@ -574,7 +574,7 @@ function fish_prompt
         set_color green
     else
         set_color red
-    fi
+    end
     printf "__SYMBOL__ "
     set_color normal
 end
@@ -589,7 +589,7 @@ function fish_prompt
         set_color green
     else
         set_color red
-    fi
+    end
     printf "__SYMBOL__ "
     set_color normal
 end
@@ -614,7 +614,7 @@ function fish_prompt
         set_color green
     else
         set_color red
-    fi
+    end
     printf "__SYMBOL__ "
     set_color normal
 end
