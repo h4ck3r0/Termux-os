@@ -119,15 +119,15 @@ After running `bash os.sh`, you'll be presented with an interactive menu. Follow
 
 ```
 ╔════════════════════════════════════════╗
-║     Termux-OS Menu                    ║
+║     Termux-OS Menu                     ║
 ╠════════════════════════════════════════╣
-║ 1. Install Zsh Theme                  ║
-║ 2. Install Fish Theme                 ║
-║ 3. Install Bash Theme                 ║
-║ 4. Apply Color Theme                  ║
-║ 5. Setup Cyber Lock                   ║
-║ 6. Custom Username Banner             ║
-║ 7. Exit                               ║
+║ 1. Install Zsh Theme                   ║
+║ 2. Install Fish Theme                  ║
+║ 3. Install Bash Theme                  ║
+║ 4. Apply Color Theme                   ║
+║ 5. Setup Cyber Lock                    ║
+║ 6. Custom Username Banner              ║
+║ 7. Exit                                ║
 ╚════════════════════════════════════════╝
 ```
 
